@@ -1,6 +1,5 @@
 chromium/
 dconf/
-kitty/
 pulse/
 systemd/
 *.bak/
