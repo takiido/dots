@@ -1,3 +1,3 @@
-'''bash
-ln -s ~/git/dots/directory_n ~/.config/directory_n
-'''
+```bash
+ln -s ~/git/dots/<dir> ~/.config/<dir>
+```
