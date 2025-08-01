@@ -3,7 +3,9 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.tabstop = 2
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
 vim.o.swapfile = false
 
 vim.g.mapleader = " "
@@ -36,11 +38,12 @@ require("nvim-tree").setup({
 })
 
 require("mini.pick").setup()
+
 require("blink.cmp").setup({
 	fuzzy = {
-		implementation = "lua" },
+		implementation = "lua"
+	},
 })
-
 
 require("monokai-pro").setup({
 	vim.cmd("colorscheme monokai-pro"),
