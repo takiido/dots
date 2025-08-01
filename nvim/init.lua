@@ -11,42 +11,63 @@ vim.o.swapfile = false
 vim.g.mapleader = " "
 
 vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
-vim.keymap.set('n', '<leader>w', ':write<CR>')
+vim.keymap.set('n', '<leader>w', function()
+    vim.lsp.buf.format()
+    vim.cmd('write')
+end
+)
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>f', ':Pick files<CR>')
 
 vim.pack.add({
-	{ src = "https://github.com/loctvl842/monokai-pro.nvim" },
-	{ src = "https://github.com/neovim/nvim-lspconfig" },
-	{ src = "https://github.com/nvim-tree/nvim-tree.lua" },
-	{ src = "https://github.com/echasnovski/mini.pick" },
-	{ src = "https://github.com/MunifTanjim/nui.nvim" },
-	{ src = "https://github.com/Saghen/blink.cmp" },
+    { src = "https://github.com/loctvl842/monokai-pro.nvim" },
+    { src = "https://github.com/neovim/nvim-lspconfig" },
+    { src = "https://github.com/nvim-tree/nvim-tree.lua" },
+    { src = "https://github.com/echasnovski/mini.pick" },
+    { src = "https://github.com/MunifTanjim/nui.nvim" },
+    { src = "https://github.com/Saghen/blink.cmp" },
+    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+    { src = "https://github.com/romgrk/barbar.nvim" },
 })
 
 vim.lsp.enable({
-	"lua_ls",
-	"prettier",
+    "lua_ls",
+    "prettier",
+    "rust-analyzer",
 })
 
 require("nvim-tree").setup({
-	view = {
-		width = 30,
-	},
+    view = {
+        width = 30,
+    },
+    renderer = {
+        indent_markers = {
+            enable = true,
+        }
+    }
 })
+
+require("nvim-web-devicons").setup()
 
 require("mini.pick").setup()
 
 require("blink.cmp").setup({
-	fuzzy = {
-		implementation = "lua"
-	},
+    fuzzy = {
+        implementation = "lua"
+    },
+})
+
+require("barbar").setup({
+    animation = true,
+    auto_hide = false,
+    clickable = true,
+    highlight_visible = true,
 })
 
 require("monokai-pro").setup({
-	vim.cmd("colorscheme monokai-pro"),
+    vim.cmd("colorscheme monokai-pro"),
 })
 
 vim.cmd("MonokaiPro ristretto")
