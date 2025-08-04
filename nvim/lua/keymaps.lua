@@ -1,0 +1,32 @@
+vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
+vim.keymap.set('n', '<leader>w', function()
+    vim.lsp.buf.format()
+    vim.cmd('write')
+end
+)
+vim.keymap.set('n', '<leader>q', ':quit<CR>')
+vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
+vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
+
+vim.keymap.set('n', 'ff', function ()
+    require("fff").find_files()
+end
+)
+-- vim.keymap.set('n', '<leader>f', ':Pick files<CR>')
+
+vim.keymap.set('n', '<leader>tl', ':BufferNext<CR>')
+vim.keymap.set('n', '<leader>th', ':BufferPrevious<CR>')
+vim.keymap.set('n', '<leader>tx', ':BufferClose<CR>')
+vim.keymap.set('n', '<leader>t1', ':BufferGoto 1<CR>')
+vim.keymap.set('n', '<leader>t2', ':BufferGoto 2<CR>')
+vim.keymap.set('n', '<leader>t3', ':BufferGoto 3<CR>')
+vim.keymap.set('n', '<leader>t4', ':BufferGoto 4<CR>')
+vim.keymap.set('n', '<leader>t5', ':BufferGoto 5<CR>')
+vim.keymap.set('n', '<leader>t6', ':BufferGoto 6<CR>')
+vim.keymap.set('n', '<leader>t7', ':BufferGoto 7<CR>')
+vim.keymap.set('n', '<leader>t8', ':BufferGoto 8<CR>')
+vim.keymap.set('n', '<leader>t9', ':BufferGoto 9<CR>')
+vim.keymap.set('n', '<leader>tj', ':BufferLast<CR>')
+vim.keymap.set('n', '<leader>tt', ':BufferPin<CR>')
+
+vim.keymap.set('n', '<leader>M', ':messages<CR>')

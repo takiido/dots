@@ -3,3 +3,4 @@ dconf/
 pulse/
 systemd/
 *.bak/
+.DS_Store
