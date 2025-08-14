@@ -6,5 +6,5 @@ require("barbar").setup({
     highlight_visible = true,
     sidebar_filetypes = {
         NvimTree = true,
-    }
+    },
 })
