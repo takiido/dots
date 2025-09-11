@@ -7,6 +7,7 @@
 - **Bar**: waybar
 - **Notification daemon**: mako
 - **Editor**: neovim-nightly
+- **Bluetooth manager**: bluetui
 
 ## How to use
 

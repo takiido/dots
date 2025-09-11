@@ -1,27 +1,199 @@
 // -*- mode: jsonc -*-
 {
-  "height": 40,
-  "spacing": 7,
-  "width": 1892,
-  "reload_style_on_change": true,
-  "modules-left": [
-    "battery",
-    "pulseaudio",
-    "backlight"
-  ],
-  "modules-center": [
-    "hyprland/workspaces#left",
-    "custom/middle",
-    "hyprland/workspaces#right"
-  ],
-  "modules-right": [
-    // "mpd",
-    // "idle_inhibitor",
-    "network",
-    "bluetooth",
-    "group/group-performance",
-    "clock"
-  ],
+    "height": 48,
+    "spacing": 0,
+    "position": "bottom",
+    "reload_style_on_change": true,
+
+    // LAYOUT
+    "modules-left": [
+        "custom/mode",
+        "group/g_backlight",
+        "group/g_pulseaudio",
+        "custom/fn-keys",
+        "custom/keyboard-brightness"
+    ],
+    "modules-center": [
+        "hyprland/workspaces#left",
+        "custom/middle",
+        "hyprland/workspaces#right"
+    ],
+    "modules-right": [
+        "network",
+        "battery",
+        "clock"
+    ],
+
+    "backlight/slider": {
+        "min": 0,
+        "max": 100,
+        "orientation": "horizontal",
+        "device": "intel_backlight"
+    },
+
+    // MODULES
+    "clock": {
+        "format": "{:%I:%M %p}"
+    },
+    "battery": {
+        "interval": 10,
+        "states": {
+            "warning": 35,
+            "critical": 15
+        },
+        "format": "{icon}{capacity}%",
+        "format-icons": [
+            "󰂎 ",
+            "󰂎 ",
+            "󰂃 ",
+            "󰂃 ",
+            "󰁽 ",
+            "󰁾 ",
+            "󰁿 ",
+            "󰂀 ",
+            "󰂁 ",
+            "󰂂 ",
+            "󰁹 "
+        ],
+        "tooltip": true,
+        "tooltip-format": "Power draw: {power}W\nTime left: {time}\nCycles: {cycles}",
+        "bat-compatibility": true
+    },
+    "network": {
+        "format-wifi": "{icon} {essid}",
+        "format-ethernet": "󰈀 ",
+        "tooltip-format": "{ifname} via {ipaddr}/{cidr}",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "[ 󰤮  ]",
+        "format-icons": [
+            "󰤯 ",
+            "󰤟 ",
+            "󰤢 ",
+            "󰤥 ",
+            "󰤨 "
+        ]
+    },
+    "pulseaudio#icon": {
+        "scroll-step": 1,
+        "format": "{icon}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "󰖁 ",
+        "format-icons": {
+            "hdmi": [
+                "󰡁",
+                "󰡁",
+                "󰡁",
+                "󰡁",
+                "󰡁",
+                "󰡁",
+                "󰡁",
+                "󰡁",
+                "󰡁",
+                "󰡁",
+                "󰡁"
+            ],
+            "headphone": [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            "default": [
+                "󰕿 ",
+                "󰕿 ",
+                "󰖀 ",
+                "󰖀 ",
+                "󰖀 ",
+                "󰖀 ",
+                "󰖀 ",
+                "󰕾 ",
+                "󰕾 ",
+                "󰕾 ",
+                "󰕾 "
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+    "pulseaudio#control": {
+        "format": "{icon}",
+        "format-icons": [
+            "[░░░░░░░░░░]",
+            "[▓░░░░░░░░░]",
+            "[▓▓░░░░░░░░]",
+            "[▓▓▓░░░░░░░]",
+            "[▓▓▓▓░░░░░░]",
+            "[▓▓▓▓▓░░░░░]",
+            "[▓▓▓▓▓▓░░░░]",
+            "[▓▓▓▓▓▓▓░░░]",
+            "[▓▓▓▓▓▓▓▓░░]",
+            "[▓▓▓▓▓▓▓▓▓░]",
+            "[▓▓▓▓▓▓▓▓▓▓]"
+        ]
+    },
+    "backlight#icon": {
+        "format": "{icon}",
+        "tooltip": true,
+        "tooltip-format": "{percent}%",
+        "format-icons": [
+        "󰛩 ",
+        "󱩎 ",
+        "󱩏 ",
+        "󱩐 ",
+        "󱩑 ",
+        "󱩒 ",
+        "󱩓 ",
+        "󱩔 ",
+        "󱩕 ",
+        "󱩖 ",
+        "󰛨 "
+        ]
+    },
+    "backlight#control": {
+        "format": "{icon}",
+        "tooltip": true,
+        "tooltip-format": "{percent}%",
+        "format-icons": [
+            "[░░░░░░░░░░]",
+            "[▓░░░░░░░░░]",
+            "[▓▓░░░░░░░░]",
+            "[▓▓▓░░░░░░░]",
+            "[▓▓▓▓░░░░░░]",
+            "[▓▓▓▓▓░░░░░]",
+            "[▓▓▓▓▓▓░░░░]",
+            "[▓▓▓▓▓▓▓░░░]",
+            "[▓▓▓▓▓▓▓▓░░]",
+            "[▓▓▓▓▓▓▓▓▓░]",
+            "[▓▓▓▓▓▓▓▓▓▓]"
+        ]
+    },
+
+
+    // CUSTOM MODULES
+    "custom/mode": {
+        "format": "NORMAL"
+    },
+    
+    "custom/fn-keys": {
+        "format": "Fn",
+        "states": {
+            "on": 1,
+            "off": 0
+        }
+    },
+
+    "custom/keyboard-brightness": {
+        "on-click": "asusctl -n",
+        "format": " ",
+    },
+
   "mpd": {
     "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
     "format-disconnected": "Disconnected ",
@@ -48,68 +220,34 @@
     "tooltip-format": "MPD (connected)",
     "tooltip-format-disconnected": "MPD (disconnected)"
   },
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "[ 󰅶  ]",
-      "deactivated": "[ 󰾪  ]"
-    }
-  },
-  "clock": {
-    "format": "[ 󱑎  {:%I:%M %p} ]",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format-alt": "[   {:%m %d %C} ]"
-  },
-  "backlight": {
-    "format": "{icon} {percent}%",
-    "format-icons": [
-      "󰛩  [░░░░░░░░░░]",
-      "󱩎  [▓░░░░░░░░░]",
-      "󱩏  [▓▓░░░░░░░░]",
-      "󱩐  [▓▓▓░░░░░░░]",
-      "󱩑  [▓▓▓▓░░░░░░]",
-      "󱩒  [▓▓▓▓▓░░░░░]",
-      "󱩓  [▓▓▓▓▓▓░░░░]",
-      "󱩔  [▓▓▓▓▓▓▓░░░]",
-      "󱩕  [▓▓▓▓▓▓▓▓░░]",
-      "󱩖  [▓▓▓▓▓▓▓▓▓░]",
-      "󰛨  [▓▓▓▓▓▓▓▓▓▓]"
-    ]
-  },
-  "battery": {
-    "interval": 10,
-    "format": " {icon} {capacity}%",
-    "format-icons": [
-      "[ 󰂎 ] [░░░░░░░░░░]",
-      "[ 󰂎 ] [▓░░░░░░░░░]",
-      "[ 󰂃 ] [▓▓░░░░░░░░]",
-      "[ 󰂃 ] [▓▓▓░░░░░░░]",
-      "[ 󰁽 ] [▓▓▓▓░░░░░░]",
-      "[ 󰁾 ] [▓▓▓▓▓░░░░░]",
-      "[ 󰁿 ] [▓▓▓▓▓▓░░░░]",
-      "[ 󰂀 ] [▓▓▓▓▓▓▓░░░]",
-      "[ 󰂁 ] [▓▓▓▓▓▓▓▓░░]",
-      "[ 󰂂 ] [▓▓▓▓▓▓▓▓▓░]",
-      "[ 󰁹 ] [▓▓▓▓▓▓▓▓▓▓]"
-    ],
-    "tooltip": true,
-    "tooltip-format": "Power draw: {power}W\nTime left: {time}\nCycles: {cycles}",
-    "bat-compatibility": true
-  },
-  "network": {
-    "format-wifi": "[ {icon} ]",
-    "format-ethernet": "[ 󰈀  ]",
-    "tooltip-format": "{ifname} via {ipaddr}/{cidr}",
-    "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "[ 󰤮  ]",
-    "format-icons": [
-      "󰤯 ",
-      "󰤟 ",
-      "󰤢 ",
-      "󰤥 ",
-      "󰤨 "
-    ]
-  },
+
+    // GROUPS
+    "group/g_backlight": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 140
+        },
+        "click-to-reveal": true,
+        "modules": [
+            "backlight#icon",
+            "backlight#control"
+        ]
+    },
+    "group/g_pulseaudio": {
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 140,
+            "click-to-reveal": true
+        },
+        "click-to-reveal": true,
+        "modules": [
+            "pulseaudio#icon",
+            "pulseaudio#control"
+        ]
+    },
+
+
+
   "bluetooth": {
     "format": "[ 󰂱 ]",
     "format-off": "[ 󰂲 ]",
@@ -118,55 +256,6 @@
     "tooltip-format": "{status}",
     "tooltip-format-enumerate-connected": "[  ] {device_alias}\t{device_battery_percentage}% [ 󰥈 ]",
     "tooltip-format-connected": "Connected devices:\n{device_enumerate}"
-  },
-  "pulseaudio": {
-    "scroll-step": 1,
-    "format": "{icon} {volume}%",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
-    "format-muted": "󰖁  [░░░░░░░░░░] 0%",
-    "format-icons": {
-      "hdmi": [
-        "󰡁  [░░░░░░░░░░]",
-        "󰡁  [▓░░░░░░░░░]",
-        "󰡁  [▓▓░░░░░░░░]",
-        "󰡁  [▓▓▓░░░░░░░]",
-        "󰡁  [▓▓▓▓░░░░░░]",
-        "󰡁  [▓▓▓▓▓░░░░░]",
-        "󰡁  [▓▓▓▓▓▓░░░░]",
-        "󰡁  [▓▓▓▓▓▓▓░░░]",
-        "󰡁  [▓▓▓▓▓▓▓▓░░]",
-        "󰡁  [▓▓▓▓▓▓▓▓▓░]",
-        "󰡁  [▓▓▓▓▓▓▓▓▓▓]"
-      ],
-      "headphone": [
-        "  [░░░░░░░░░░]",
-        "  [▓░░░░░░░░░]",
-        "  [▓▓░░░░░░░░]",
-        "  [▓▓▓░░░░░░░]",
-        "  [▓▓▓▓░░░░░░]",
-        "  [▓▓▓▓▓░░░░░]",
-        "  [▓▓▓▓▓▓░░░░]",
-        "  [▓▓▓▓▓▓▓░░░]",
-        "  [▓▓▓▓▓▓▓▓░░]",
-        "  [▓▓▓▓▓▓▓▓▓░]",
-        "  [▓▓▓▓▓▓▓▓▓▓]"
-      ],
-      "default": [
-        "󰕿  [░░░░░░░░░░]",
-        "󰕿  [▓░░░░░░░░░]",
-        "󰖀  [▓▓░░░░░░░░]",
-        "󰖀  [▓▓▓░░░░░░░]",
-        "󰖀  [▓▓▓▓░░░░░░]",
-        "󰖀  [▓▓▓▓▓░░░░░]",
-        "󰖀  [▓▓▓▓▓▓░░░░]",
-        "󰕾  [▓▓▓▓▓▓▓░░░]",
-        "󰕾  [▓▓▓▓▓▓▓▓░░]",
-        "󰕾  [▓▓▓▓▓▓▓▓▓░]",
-        "󰕾  [▓▓▓▓▓▓▓▓▓▓]"
-      ]
-    },
-    "on-click": "pavucontrol"
   },
   "custom/media": {
     "format": "{icon} {text}",
@@ -192,34 +281,7 @@
       "hibernate": "systemctl hibernate"
     }
   },
-  "group/group-performance": {
-    "orientation": "inherit",
-    "drawer": {
-      "transition-duration": 500
-    },
-    "click-to-reveal": true,
-    "modules": [
-      "temperature",
-      "cpu",
-      "memory"
-    ]
-  },
-  "temperature": {
-    "format": "[ {icon} ]",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
-  },
-  "cpu": {
-    "format": "[   ]"
-  },
-  "memory": {
-    "format": "[   ]"
-  },
+
   "hyprland/workspaces#left": {
     "active-only": false,
     "all-outputs": true,
