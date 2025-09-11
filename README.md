@@ -8,6 +8,7 @@
 - **Notification daemon**: mako
 - **Editor**: neovim-nightly
 - **Bluetooth manager**: bluetui
+- **Message bus**: dbus
 
 ## How to use
 
