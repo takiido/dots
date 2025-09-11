@@ -19,7 +19,7 @@ or
 git clone https://github.com/takiido/dots
 ```
 
-2. Simply create symlinks (replace <dir> with desired directory e.g hypr) 
+2. Simply create symlinks replacing dir with desired directory (e.g hypr) 
 ```bash
 ln -s ~/git/dots/<dir> ~/.config/<dir>
 ```
