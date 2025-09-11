@@ -1,3 +1,7 @@
+# NECRODOTS by takiido
+>[!NOTE]
+>Fall 2025 edition
+
 ## I use:
 - **DE**: hyprland
 - **Bar**: waybar
