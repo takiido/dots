@@ -4,6 +4,22 @@
 - **Notification daemon**: mako
 - **Editor**: neovim-nightly
 
+## How to use
+
+>[!WARNING]
+>Make sure to backup your config files first
+
+1. Download dot files from git
+```bash
+git clone git@github.com:takiido/dots
+```
+or 
+
+```bash
+git clone https://github.com/takiido/dots
+```
+
+2. Simply create symlinks (replace <dir> with desired directory e.g hypr) 
 ```bash
 ln -s ~/git/dots/<dir> ~/.config/<dir>
 ```
