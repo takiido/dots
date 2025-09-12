@@ -20,3 +20,14 @@ $GREY    : #696874;
   font-family: "Phosphor";
   font-size: 32px;
 }
+
+.battery {
+
+  &_charging {
+    color: green;
+  }
+
+  &_warning {
+    color: red;
+  }
+}

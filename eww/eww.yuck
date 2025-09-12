@@ -1,10 +1,10 @@
 (defpoll screen_brightness
   :interval "24h"
-  "brightnessctl -m | awk -F',' '{print $4}' | tr -d '%' && eww update bv=$(brightnessctl -m | awk -F',' '{print $4}' | tr -d '%')")
+  "brightnessctl -m | awk -F',' '{print $4}' | tr -d '%' && eww update sb_value=$(brightnessctl -m | awk -F',' '{print $4}' | tr -d '%')")
 
-(defvar b false)
+(defvar sb_toggle false)
 
-(defvar bv 0)
+(defvar sb_value 0)
 
 (defwindow bar
   :monitor 0
@@ -21,9 +21,12 @@
 
 (defwidget left_widgets[]
   (box
+    :space-evenly false
     :orientation "h"
     (mode)
-    (screen_brightness)))
+    (screen_brightness)
+    (battery  :capacity {EWW_BATTERY.BAT0.capacity}
+              :status {EWW_BATTERY.BAT0.status})))
 
 
 (defwidget mode[]
@@ -34,27 +37,40 @@
     :geometry (geometry
                 :width "200px")
     (label
-      :text "NORMAL ")))
+      :text "NORMAL")))
 
  
 (defwidget screen_brightness []
   (box
     (button
       :class "btn-debug"
-      :onclick "eww update b=${b == false ? true : false }"
+      :onclick "eww update sb_toggle=${sb_toggle == false ? true : false }"
       (label
         :class "icon"
-        :text "${bv > 40 ? '' : ''}"))
+        :text "${sb_value > 40 ? '' : ''}"))
     (revealer
       :class "slider"
       :transition "slideright"
-      :reveal b
+      :reveal sb_toggle
       :duration "500ms"
       (scale
        :value screen_brightness
        :min 0
        :max 100
-       :onchange "brightnessctl s {}% && eww update bv={}"
+       :onchange "brightnessctl s {}% && eww update sb_value{}"
        :orientation "h"))))
-      
-    
+
+(defwidget battery [capacity status]
+  (box
+    :class "${status == 'Charging' ? 'battery--charging' : 'battery'}"
+    :tooltip "${capacity}% ${status == 'Charging' ? status : ''}"
+    (label
+      :class "icon ${status == 'Charging' ? 'battery_charging' : 
+                      capacity <= 15 ? 'battery_warning' : 'battery'}"
+      :text "${status == 'Charging' ? '' : 
+                capacity <= 10 ? '' : 
+                  capacity <= 25 ? '' : 
+                    capacity <= 35 ? '' : 
+                      capacity <= 50 ? '' : 
+                        capacity <= 75 ? '' : 
+                          capacity <= 90 ? '' : ''}")))
