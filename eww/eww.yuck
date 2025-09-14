@@ -1,10 +1,17 @@
+(defpoll clock_h :interval "5m" "date +\%I")
+(defpoll clock_m :interval "5s" "date +\%M")
+(defpoll am_pm :interval "5s" "date +\%p")
 (defpoll screen_brightness
   :interval "24h"
   "brightnessctl -m | awk -F',' '{print $4}' | tr -d '%' && eww update sb_value=$(brightnessctl -m | awk -F',' '{print $4}' | tr -d '%')")
+(defpoll p_volume 
+  :interval "24h"
+  "eww update v_volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+%' | head -n1 | tr -d '%')")
 
 (defvar sb_toggle false)
-
 (defvar sb_value 0)
+(defvar b_volume false)
+(defvar v_volume 0)
 
 (defwindow bar
   :monitor 0
@@ -17,16 +24,17 @@
   :exclusive "true"
   (left_widgets))
  
-  
-
 (defwidget left_widgets[]
   (box
     :space-evenly false
     :orientation "h"
     (mode)
     (screen_brightness)
+    (volume)
     (battery  :capacity {EWW_BATTERY.BAT0.capacity}
-              :status {EWW_BATTERY.BAT0.status})))
+              :status {EWW_BATTERY.BAT0.status})
+    (clock)
+    (kb_brightness)))
 
 
 (defwidget mode[]
@@ -38,27 +46,29 @@
                 :width "200px")
     (label
       :text "NORMAL")))
-
  
-(defwidget screen_brightness []
+(defwidget screen_brightness[]
   (box
-    (button
-      :class "btn-debug"
-      :onclick "eww update sb_toggle=${sb_toggle == false ? true : false }"
-      (label
-        :class "icon"
-        :text "${sb_value > 40 ? '' : ''}"))
-    (revealer
-      :class "slider"
-      :transition "slideright"
-      :reveal sb_toggle
-      :duration "500ms"
-      (scale
-       :value screen_brightness
-       :min 0
-       :max 100
-       :onchange "brightnessctl s {}% && eww update sb_value{}"
-       :orientation "h"))))
+    (custom_revealer
+      :btn_icons "${sb_value > 40 ? '' : ''}"
+      :onclick "eww update sb_toggle=${sb_toggle == false ? true : false}"
+      :is_open sb_toggle
+      :value sb_value
+      :poll screen_brightness
+      :min 0
+      :max 101
+      :onchange "brightnessctl s {}% && eww update sb_value=$(brightnessctl -m | awk -F',' '{print $4}' | tr -d '%')")))
+
+(defwidget volume[]
+  (custom_revealer
+    :btn_icons "${v_volume == 0 ? '' : v_volume < 10 ? '' : v_volume < 30 ? '' : ''}"
+    :onclick "eww update b_volume=${b_volume == false ? true : false}"
+    :is_open b_volume
+    :value v_volume
+    :poll p_volume
+    :min 0
+    :max 101
+    :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}% && eww update v_volume={}"))
 
 (defwidget battery [capacity status]
   (box
@@ -74,3 +84,57 @@
                       capacity <= 50 ? '' : 
                         capacity <= 75 ? '' : 
                           capacity <= 90 ? '' : ''}")))
+
+(defwidget clock[]
+  (box
+    (label
+      :text "${clock_h}:${clock_m} ${am_pm}")))
+
+(defwidget kb_brightness[]
+  (button
+    :class "btn-debug"
+    :onclick "asusctl -n"
+    (label
+      :class "icon"
+      :text "")))
+
+(defwidget custom_revealer[btn_icons onclick is_open value poll min max onchange]
+  (box
+    (button
+      :class "btn-debug"
+      :onclick onclick
+      (label
+        :class "icon"
+        :text btn_icons))
+    (revealer
+      :class "slider"
+      :transition "slideright"
+      :reveal is_open
+      :duration "500ms"
+      (custom_slider
+        :value value
+        :poll poll
+        :min min
+        :max max
+        :onchange onchange))))
+
+(defwidget custom_slider[value min max poll onchange]
+  (box
+    (overlay
+      (label 
+        :text "${value <= 10 ? '[░░░░░░░░░░]' : 
+                   value <= 20 ? '[▓░░░░░░░░░]' : 
+                     value <= 30 ? '[▓▓░░░░░░░░]' : 
+                       value <= 40 ? '[▓▓▓░░░░░░░]' : 
+                         value <= 50 ? '[▓▓▓▓░░░░░░]' : 
+                           value <= 60 ? '[▓▓▓▓▓░░░░░]' : 
+                             value <= 70 ? '[▓▓▓▓▓▓░░░░]' : 
+                               value <= 80 ? '[▓▓▓▓▓▓▓░░░]' : 
+                                 value <= 90 ? '[▓▓▓▓▓▓▓▓░░]' : 
+                                   value < 100 ? '[▓▓▓▓▓▓▓▓▓░]' : '[▓▓▓▓▓▓▓▓▓▓]'}")
+      (scale
+        :class "hidden_slider"
+        :value value
+        :min min
+        :max max
+        :onchange onchange))))

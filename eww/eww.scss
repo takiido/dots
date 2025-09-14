@@ -16,6 +16,11 @@ $GREY    : #696874;
   border: 1px dashed red;
 }
 
+.hidden_slider {
+  opacity: 0;
+  background: transparent;
+}
+
 .icon {
   font-family: "Phosphor";
   font-size: 32px;
@@ -30,4 +35,9 @@ $GREY    : #696874;
   &_warning {
     color: red;
   }
+}
+
+.test {
+  padding: 10px;
+  background: transparent;
 }

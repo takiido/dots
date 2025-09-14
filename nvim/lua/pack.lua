@@ -9,4 +9,6 @@ vim.pack.add({
     { src = "https://github.com/romgrk/barbar.nvim" },
     { src = "https://github.com/mrcjkb/rustaceanvim" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+    { src = "https://github.com/elkowar/yuck.vim" },
+    { src = "https://github.com/gpanders/nvim-parinfer" },
 })
