@@ -5,16 +5,15 @@ usage() {
     echo
     echo "Options:"
     echo "  -h            Show this help message"
-    echo "  -u VALUE      Update screen brightness to VALUE (percentage, e.g., 75)"
+    echo "  -u VALUE      Update volume to VALUE (percentage, e.g., 75)"
     echo
     echo "If no options are passed, the script will:"
-    echo "  - Get current screen brightness"
-    echo "  - Update eww variable var_brightness accordingly"
-    echo "  - Steal your credit card info"
+    echo "  - Get current volume"
+    echo "  - Update eww variable var_volume accordingly"
     exit 1
 }
 
-brightness=""
+volume=""
 
 # Parse options
 while getopts ":hu:" opt; do
@@ -23,7 +22,7 @@ while getopts ":hu:" opt; do
       usage
       ;;
     u)
-      brightness=$OPTARG
+      volume=$OPTARG
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -38,14 +37,14 @@ done
 
 shift $((OPTIND -1))
 
-if [[ -n "$brightness" ]]; then
-    # Set brightness with brightnessctl
-    brightnessctl set --quiet "${brightness}%"
+if [[ -n "$volume" ]]; then
+    # Set default sink volume with pactl
+    pactl set-sink-volume @DEFAULT_SINK@ $volume%
     # Update eww
-    eww update var_brightness=$brightness
+    eww update var_volume=$volume
 else
-    # Get brightness from brightnessctl
+    # Get default sink volume from pactl
     brightness=$(brightnessctl -m | grep -oP '\d+%' | tr -d '%')
     # Update eww
-    eww update var_brightness=$brightness
+    eww update var_volume=$volume
 fi
