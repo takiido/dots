@@ -1,17 +1,48 @@
+;; ===============================================================
+;; EWW CONFIG NAMING GUIDE
+;; ===============================================================
+;;
+;; To keep the config readable and organized, follow a simple
+;; naming convention based on element type:
+;;
+;; 1. Polls (values updated periodically)
+;;    Prefix: poll_
+;;    Example: poll_brightness, poll_battery
+;;
+;; 2. Variables (dynamic values updated via scripts or user input)
+;;    Prefix: var_
+;;    Example: var_volume, var_brightness
+;;
+;; 3. Booleans (flags that are true/false)
+;;    Prefix: is_
+;;    Example: is_muted, is_fullscreen
+;;
+;; 4. Buttons (interactive elements)
+;;    Prefix: btn_
+;;    Example: btn_toggle_brightness, btn_increase_volume
+;;
+;; 5. Labels (display-only text elements)
+;;    Prefix: lbl_
+;;    Example: lbl_brightness, lbl_battery_status
+;;
+;; Tips:
+;; - Use descriptive names: e.g., var_brightness_screen1 > var_b1
+;; - Keep prefixes consistent to quickly identify element types
+;; - For readability, avoid overly short or ambiguous names
+;;
+;; ===============================================================
+
 (defpoll clock_h :interval "5m" "date +\%I")
 (defpoll clock_m :interval "5s" "date +\%M")
 (defpoll am_pm :interval "5s" "date +\%p")
-(defpoll screen_brightness
-  :interval "24h"
-  "brightnessctl -m | awk -F',' '{print $4}' | tr -d '%' && eww update sb_value=$(brightnessctl -m | awk -F',' '{print $4}' | tr -d '%')")
-(defpoll p_volume 
+(defpoll poll_volume 
   :interval "24h"
   "eww update v_volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+%' | head -n1 | tr -d '%')")
 
-(defvar sb_toggle false)
-(defvar sb_value 0)
-(defvar b_volume false)
-(defvar v_volume 0)
+(defvar is_brightness false)
+(defvar is_volume false)
+(defvar var_brightness 0)
+(defvar var_volume 0)
 
 (defwindow bar
   :monitor 0
@@ -48,24 +79,21 @@
       :text "NORMAL")))
  
 (defwidget screen_brightness[]
-  (box
     (custom_revealer
-      :btn_icons "${sb_value > 40 ? '' : ''}"
-      :onclick "eww update sb_toggle=${sb_toggle == false ? true : false}"
-      :is_open sb_toggle
-      :value sb_value
-      :poll screen_brightness
+      :btn_icons "${var_brightness > 40 ? '' : ''}"
+      :onclick "eww update is_brightness=${is_brightness == false ? true : false}"
+      :is_open is_brightness
+      :value var_brightness
       :min 0
       :max 101
-      :onchange "brightnessctl s {}% && eww update sb_value=$(brightnessctl -m | awk -F',' '{print $4}' | tr -d '%')")))
+      :onchange "~/.config/scripts/eww/helpers/brightness.sh -u {}"))
 
 (defwidget volume[]
   (custom_revealer
-    :btn_icons "${v_volume == 0 ? '' : v_volume < 10 ? '' : v_volume < 30 ? '' : ''}"
-    :onclick "eww update b_volume=${b_volume == false ? true : false}"
-    :is_open b_volume
-    :value v_volume
-    :poll p_volume
+    :btn_icons "${var_volume == 0 ? '' : var_volume < 10 ? '' : var_volume < 30 ? '' : ''}"
+    :onclick "eww update b_volume=${is_volume == false ? true : false}"
+    :is_open is_volume
+    :value var_volume
     :min 0
     :max 101
     :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}% && eww update v_volume={}"))
@@ -98,7 +126,7 @@
       :class "icon"
       :text "")))
 
-(defwidget custom_revealer[btn_icons onclick is_open value poll min max onchange]
+(defwidget custom_revealer[btn_icons onclick is_open value min max onchange]
   (box
     (button
       :class "btn-debug"
@@ -113,12 +141,11 @@
       :duration "500ms"
       (custom_slider
         :value value
-        :poll poll
         :min min
         :max max
         :onchange onchange))))
 
-(defwidget custom_slider[value min max poll onchange]
+(defwidget custom_slider[value min max onchange]
   (box
     (overlay
       (label 
