@@ -9,19 +9,23 @@
 ;;    Prefix: poll_
 ;;    Example: poll_brightness, poll_battery
 ;;
-;; 2. Variables (dynamic values updated via scripts or user input)
+;; 2. Listening variables (updated continuously from a script)
+;;    Prefix: listen_
+;;    Example: listen_volume, listen_brightness
+;;
+;; 3. Variables (dynamic values updated via scripts or user input)
 ;;    Prefix: var_
 ;;    Example: var_volume, var_brightness
 ;;
-;; 3. Booleans (flags that are true/false)
+;; 4. Booleans (flags that are true/false)
 ;;    Prefix: is_
 ;;    Example: is_muted, is_fullscreen
 ;;
-;; 4. Buttons (interactive elements)
+;; 5. Buttons (interactive elements)
 ;;    Prefix: btn_
 ;;    Example: btn_toggle_brightness, btn_increase_volume
 ;;
-;; 5. Labels (display-only text elements)
+;; 6. Labels (display-only text elements)
 ;;    Prefix: lbl_
 ;;    Example: lbl_brightness, lbl_battery_status
 ;;
@@ -32,17 +36,19 @@
 ;;
 ;; ===============================================================
 
+
 (defpoll clock_h :interval "5m" "date +\%I")
 (defpoll clock_m :interval "5s" "date +\%M")
 (defpoll am_pm :interval "5s" "date +\%p")
-(defpoll poll_volume 
-  :interval "24h"
-  "eww update v_volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+%' | head -n1 | tr -d '%')")
 
 (defvar is_brightness false)
 (defvar is_volume false)
 (defvar var_brightness 0)
 (defvar var_volume 0)
+
+(deflisten listen_onreload
+  :initial 0
+  `~/.config/scripts/eww/bar.sh -r`)
 
 (defwindow bar
   :monitor 0
@@ -59,6 +65,9 @@
   (box
     :space-evenly false
     :orientation "h"
+    (label ;; Used to run script on hot reload
+      :class "hidden"
+      :text listen_onreload)
     (mode)
     (screen_brightness)
     (volume)
@@ -91,12 +100,12 @@
 (defwidget volume[]
   (custom_revealer
     :btn_icons "${var_volume == 0 ? '' : var_volume < 10 ? '' : var_volume < 30 ? '' : ''}"
-    :onclick "eww update b_volume=${is_volume == false ? true : false}"
+    :onclick "eww update is_volume=${is_volume == false ? true : false}"
     :is_open is_volume
     :value var_volume
     :min 0
     :max 101
-    :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}% && eww update v_volume={}"))
+    :onchange "~/.config/scripts/eww/helpers/volume.sh -u {}"))
 
 (defwidget battery [capacity status]
   (box

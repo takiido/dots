@@ -16,6 +16,11 @@ $GREY    : #696874;
   border: 1px dashed red;
 }
 
+.hidden {
+  font-size: 0;
+  opacity: 0;
+}
+
 .hidden_slider {
   opacity: 0;
   background: transparent;
