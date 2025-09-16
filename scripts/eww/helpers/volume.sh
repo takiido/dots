@@ -44,7 +44,7 @@ if [[ -n "$volume" ]]; then
     eww update var_volume=$volume
 else
     # Get default sink volume from pactl
-    brightness=$(brightnessctl -m | grep -oP '\d+%' | tr -d '%')
+    volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+%' | head -n1 | tr -d '%')
     # Update eww
     eww update var_volume=$volume
 fi
