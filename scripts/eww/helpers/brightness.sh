@@ -10,6 +10,7 @@ usage() {
     echo "If no options are passed, the script will:"
     echo "  - Get current screen brightness"
     echo "  - Update eww variable var_brightness accordingly"
+    echo "  - Steal your credit card info"
     exit 1
 }
 
@@ -38,7 +39,9 @@ done
 shift $((OPTIND -1))
 
 if [[ -n "$brightness" ]]; then
+    # Set brightness with brightnessctl
     brightnessctl set --quiet "${brightness}%"
+    # Update eww
     eww update var_brightness=$brightness
 else
     # Get brightness from brightnessctl
