@@ -48,10 +48,12 @@
 (defpoll clock_m :interval "5s" "date +\%M")
 (defpoll am_pm :interval "5s" "date +\%p")
 
-(defvar is_brightness false)
-(defvar is_volume false)
+(defvar var_mode "normal")
+(defvar is_brightness true)
+(defvar is_volume true)
 (defvar var_brightness 0)
 (defvar var_volume 0)
+(defvar var_kb-brightness "Off")
 
 (deflisten listen_onreload
   :initial 0
@@ -60,8 +62,8 @@
 (defwindow bar
   :monitor 0
   :geometry (geometry 
-             :height "48px" 
-             :width "100%" 
+             :width "100%"  
+             :height "32px"
              :anchor "bottom center")
   
   :stacking "bt"
@@ -75,26 +77,30 @@
   (box
     :space-evenly false
     :orientation "h"
+    :halign "start"
     (label ;; Used to run script on hot reload
       :class "hidden"
       :text listen_onreload)
     (mode)
     (screen_brightness)
     (volume)
-    (battery  :capacity {EWW_BATTERY.BAT0.capacity}
-              :status {EWW_BATTERY.BAT0.status})))
+    (kb_brightness)))
 
 (defwidget center_widgets[]
   (box 
     :space-evenly false
     :orientation "h"
     :halign "center"
-    (kb_brightness)))
+    (label
+      :text "𝖓𝖎𝖍𝖎𝖑")))
 
 (defwidget right_widgets[]
   (box
     :space-evenly false
     :orientation "h"
     :halign "end"
+    (battery 
+      :capacity {EWW_BATTERY.BAT0.capacity}
+      :status {EWW_BATTERY.BAT0.status})
     (clock)))
 

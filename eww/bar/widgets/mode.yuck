@@ -2,8 +2,10 @@
   (box
     :width "100px"
     :hexpand false
-    :class "mode"
+    :class "bar__mode ${var_mode == 'tablet' ? 'bar__mode--tablet' :
+                          var_mode == 'dock' ? 'bar__mode--dock' : 'bar__mode--normal'}"
     :geometry (geometry
                 :width "200px")
     (label
+      :class "bar__mode-lbl"
       :text "NORMAL")))

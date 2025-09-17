@@ -1,3 +1,22 @@
+# Parse options
+while getopts ":hu:" opt; do
+  case $opt in
+    h)
+      usage
+      ;;
+    u)
+      brightness=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      usage
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      usage
+      ;;
+  esac
+done
 #!/bin/bash
 
 usage() {
@@ -18,22 +37,22 @@ brightness=""
 
 # Parse options
 while getopts ":hu:" opt; do
-  case $opt in
-    h)
-      usage
-      ;;
-    u)
-      brightness=$OPTARG
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      usage
-      ;;
-    :)
-      echo "Option -$OPTARG requires an argument." >&2
-      usage
-      ;;
-  esac
+    case $opt in
+        h)
+            usage
+            ;;
+        u)
+            brightness=$OPTARG
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            usage
+            ;;
+        :)
+            echo "Option -$OPTARG requires an argument." >&2
+            usage
+            ;;
+    esac
 done
 
 shift $((OPTIND -1))

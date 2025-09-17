@@ -1,18 +1,17 @@
 (defwidget custom_revealer[btn_icons onclick is_open value min max onchange]
   (box
+    :class "bar__custom-revealer"
     :space-evenly false
-    (button
-      :class "btn-debug"
+    (btn_icon
+      :class ""
       :onclick onclick
-      (label
-        :class "icon"
-        :text btn_icons))
+      :tooltip "${value}%"
+      :icon btn_icons)
     (revealer
-      :width 1
       :class "slider"
       :transition "slideright"
       :reveal is_open
-      :duration "500ms"
+      :duration "180ms"
       (custom_slider
         :value value
         :min min
@@ -21,19 +20,22 @@
 
 (defwidget custom_slider[value min max onchange]
   (box
+    :class "bar__custom-slider"
     :space-evenly false
     (overlay
+      :width 96
       (label 
-        :text "${value <= 10 ? '[░░░░░░░░░░]' : 
-                   value <= 20 ? '[▓░░░░░░░░░]' : 
-                     value <= 30 ? '[▓▓░░░░░░░░]' : 
-                       value <= 40 ? '[▓▓▓░░░░░░░]' : 
-                         value <= 50 ? '[▓▓▓▓░░░░░░]' : 
-                           value <= 60 ? '[▓▓▓▓▓░░░░░]' : 
-                             value <= 70 ? '[▓▓▓▓▓▓░░░░]' : 
-                               value <= 80 ? '[▓▓▓▓▓▓▓░░░]' : 
-                                 value <= 90 ? '[▓▓▓▓▓▓▓▓░░]' : 
-                                   value < 100 ? '[▓▓▓▓▓▓▓▓▓░]' : '[▓▓▓▓▓▓▓▓▓▓]'}")
+        :class "bar__custom-slider-ascii"
+        :text "${value <= 10 ? '░░░░░░░░░░' : 
+                   value <= 20 ? '▓░░░░░░░░░' : 
+                     value <= 30 ? '▓▓░░░░░░░░' : 
+                       value <= 40 ? '▓▓▓░░░░░░░' : 
+                         value <= 50 ? '▓▓▓▓░░░░░░' : 
+                           value <= 60 ? '▓▓▓▓▓░░░░░' : 
+                             value <= 70 ? '▓▓▓▓▓▓░░░░' : 
+                               value <= 80 ? '▓▓▓▓▓▓▓░░░' : 
+                                 value <= 90 ? '▓▓▓▓▓▓▓▓░░' : 
+                                   value < 100 ? '▓▓▓▓▓▓▓▓▓░' : '▓▓▓▓▓▓▓▓▓▓'}")
       (scale
         :class "hidden_slider"
         :value value
@@ -43,3 +45,16 @@
     (label
       :width 40
       :text "${value}%")))
+
+
+(defwidget btn_icon [onclick tooltip icon class]
+  (button
+    :width 44
+    :height 42
+    :class "bar__btn ${class}"
+    :onclick onclick
+    :tooltip tooltip 
+    (label
+      :class "icon"
+      :text icon)))
+
