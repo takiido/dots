@@ -1,5 +1,6 @@
 (defwidget custom_revealer[btn_icons onclick is_open value min max onchange]
   (box
+    :space-evenly false
     (button
       :class "btn-debug"
       :onclick onclick
@@ -7,6 +8,7 @@
         :class "icon"
         :text btn_icons))
     (revealer
+      :width 1
       :class "slider"
       :transition "slideright"
       :reveal is_open
@@ -19,6 +21,7 @@
 
 (defwidget custom_slider[value min max onchange]
   (box
+    :space-evenly false
     (overlay
       (label 
         :text "${value <= 10 ? '[░░░░░░░░░░]' : 
@@ -36,4 +39,7 @@
         :value value
         :min min
         :max max
-        :onchange onchange))))
+        :onchange onchange))
+    (label
+      :width 40
+      :text "${value}%")))

@@ -9,6 +9,7 @@
 - **Editor**: neovim-nightly
 - **Bluetooth manager**: bluetui
 - **Message bus**: dbus
+- **Wallpaper util**: hyprpaper
 
 ## How to use
 
