@@ -59,7 +59,10 @@
   
   :stacking "bt"
   :exclusive "true"
-  (left_widgets))
+  (centerbox
+    (left_widgets)
+    (center_widgets)
+    (right_widgets)))
  
 (defwidget left_widgets[]
   (box
@@ -72,10 +75,17 @@
     (screen_brightness)
     (volume)
     (battery  :capacity {EWW_BATTERY.BAT0.capacity}
-              :status {EWW_BATTERY.BAT0.status})
-    (clock)
-    (kb_brightness)))
+              :status {EWW_BATTERY.BAT0.status})))
 
+(defwidget center_widgets[]
+  (kb_brightness))
+
+(defwidget right_widgets[]
+  (box
+    :space-evenly false
+    :orientation "h"
+    :halign "end"
+    (clock)))
 
 (defwidget mode[]
   (box
