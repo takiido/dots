@@ -1,0 +1,7 @@
+(defwidget kb_brightness[]
+  (button
+    :class "btn-debug"
+    :onclick "asusctl -n"
+    (label
+      :class "icon"
+      :text "")))

@@ -1,0 +1,100 @@
+;; ===============================================================
+;; EWW CONFIG NAMING GUIDE
+;; ===============================================================
+;;
+;; To keep the config readable and organized, follow a simple
+;; naming convention based on element type:
+;;
+;; 1. Polls (values updated periodically)
+;;    Prefix: poll_
+;;    Example: poll_brightness, poll_battery
+;;
+;; 2. Listening variables (updated continuously from a script)
+;;    Prefix: listen_
+;;    Example: listen_volume, listen_brightness
+;;
+;; 3. Variables (dynamic values updated via scripts or user input)
+;;    Prefix: var_
+;;    Example: var_volume, var_brightness
+;;
+;; 4. Booleans (flags that are true/false)
+;;    Prefix: is_
+;;    Example: is_muted, is_fullscreen
+;;
+;; 5. Buttons (interactive elements)
+;;    Prefix: btn_
+;;    Example: btn_toggle_brightness, btn_increase_volume
+;;
+;; 6. Labels (display-only text elements)
+;;    Prefix: lbl_
+;;    Example: lbl_brightness, lbl_battery_status
+;;
+;; Tips:
+;; - Use descriptive names: e.g., var_brightness_screen1 > var_b1
+;; - Keep prefixes consistent to quickly identify element types
+;; - For readability, avoid overly short or ambiguous names
+;;
+;; ===============================================================
+
+(include "bar/widgets/custom.yuck")
+(include "bar/widgets/mode.yuck")
+(include "bar/widgets/screen_brightness.yuck")
+(include "bar/widgets/volume.yuck")
+(include "bar/widgets/battery.yuck")
+(include "bar/widgets/clock.yuck")
+(include "bar/widgets/keyboard.yuck")
+
+(defpoll clock_h :interval "5m" "date +\%I")
+(defpoll clock_m :interval "5s" "date +\%M")
+(defpoll am_pm :interval "5s" "date +\%p")
+
+(defvar is_brightness false)
+(defvar is_volume false)
+(defvar var_brightness 0)
+(defvar var_volume 0)
+
+(deflisten listen_onreload
+  :initial 0
+  `~/.config/scripts/eww/bar.sh -r`)
+
+(defwindow bar
+  :monitor 0
+  :geometry (geometry 
+             :height "48px" 
+             :width "100%" 
+             :anchor "bottom center")
+  
+  :stacking "bt"
+  :exclusive "true"
+  (centerbox
+    (left_widgets)
+    (center_widgets)
+    (right_widgets)))
+ 
+(defwidget left_widgets[]
+  (box
+    :space-evenly false
+    :orientation "h"
+    (label ;; Used to run script on hot reload
+      :class "hidden"
+      :text listen_onreload)
+    (mode)
+    (screen_brightness)
+    (volume)
+    (battery  :capacity {EWW_BATTERY.BAT0.capacity}
+              :status {EWW_BATTERY.BAT0.status})))
+
+(defwidget center_widgets[]
+  (box 
+    :space-evenly false
+    :orientation "h"
+    :halign "center"
+    (kb_brightness)))
+
+(defwidget right_widgets[]
+  (box
+    :space-evenly false
+    :orientation "h"
+    :halign "end"
+    (clock)))
+

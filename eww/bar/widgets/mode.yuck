@@ -1,0 +1,9 @@
+(defwidget mode[]
+  (box
+    :width "100px"
+    :hexpand false
+    :class "mode"
+    :geometry (geometry
+                :width "200px")
+    (label
+      :text "NORMAL")))
