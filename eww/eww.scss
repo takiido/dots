@@ -6,7 +6,7 @@ $BLUE    : #92B3D5;
 $PURPLE  : #ACA1CF;
 $MAGENTA : #E29EDB;
 $RED     : #B33F42;
-$ORANGE  : #937771;
+$ORANGE  : #C6AAA4;
 $YELLOW  : #E4B361;
 $GREY    : #696874;
 
@@ -30,12 +30,20 @@ $GREY    : #696874;
 }
 
 .bar__btn {
-  color: $FG;
   background: transparent;
   box-shadow: none;
   text-shadow: none;
   border: none;
   border-radius: 0;
+  transition: 0.135s;
+
+  &:hover {
+    background: rgba($ORANGE, 0.2);
+
+    .icon {
+      color: rgba($FG, 0.88);
+    }
+  }
 
   &--open {
     color: #FFFFFF;
@@ -44,7 +52,6 @@ $GREY    : #696874;
 }
 
 .bar__custom-revealer {
-  margin-right: 4px;
   border-right: 1px solid $ORANGE;
 }
 
@@ -106,4 +113,8 @@ $GREY    : #696874;
   &--warning {
     color: $RED;
   }
+}
+
+.bar__kb-brightness {
+  border-right: 1px solid $ORANGE;
 }

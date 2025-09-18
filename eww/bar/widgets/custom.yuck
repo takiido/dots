@@ -11,7 +11,7 @@
       :class "slider"
       :transition "slideright"
       :reveal is_open
-      :duration "180ms"
+      :duration "140ms"
       (custom_slider
         :value value
         :min min

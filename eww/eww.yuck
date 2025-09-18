@@ -1,1 +1,40 @@
+;; ===============================================================
+;; EWW CONFIG NAMING GUIDE
+;; ===============================================================
+;;
+;; To keep the config readable and organized, follow a simple
+;; naming convention based on element type:
+;;
+;; 1. Polls (values updated periodically)
+;;    Prefix: poll_
+;;    Example: poll_brightness, poll_battery
+;;
+;; 2. Listening variables (updated continuously from a script)
+;;    Prefix: listen_
+;;    Example: listen_volume, listen_brightness
+;;
+;; 3. Variables (dynamic values updated via scripts or user input)
+;;    Prefix: var_
+;;    Example: var_volume, var_brightness
+;;
+;; 4. Booleans (flags that are true/false)
+;;    Prefix: is_
+;;    Example: is_muted, is_fullscreen
+;;
+;; 5. Buttons (interactive elements)
+;;    Prefix: btn_
+;;    Example: btn_toggle_brightness, btn_increase_volume
+;;
+;; 6. Labels (display-only text elements)
+;;    Prefix: lbl_
+;;    Example: lbl_brightness, lbl_battery_status
+;;
+;; Tips:
+;; - Use descriptive names: e.g., var_brightness_screen1 > var_b1
+;; - Keep prefixes consistent to quickly identify element types
+;; - For readability, avoid overly short or ambiguous names
+;;
+;; ===============================================================
+
 (include "bar/bar.yuck")
+(include "perfmodes/perfmodes.yuck")
