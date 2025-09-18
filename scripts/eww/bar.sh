@@ -44,7 +44,7 @@ shift $((OPTIND -1))
 
 # Open bar widget
 if [[ "$reload" != true ]]; then
-    eww open bar --screen 1
+    eww open bar --screen 0
 fi
 
 update_vars

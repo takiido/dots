@@ -13,6 +13,7 @@
 (defvar var_mode "normal")
 (defvar is_brightness true)
 (defvar is_volume true)
+(defvar is_battery false)
 (defvar var_brightness 0)
 (defvar var_volume 0)
 (defvar var_kb-brightness "Off")

@@ -1,22 +1,3 @@
-# Parse options
-while getopts ":hu:" opt; do
-  case $opt in
-    h)
-      usage
-      ;;
-    u)
-      brightness=$OPTARG
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      usage
-      ;;
-    :)
-      echo "Option -$OPTARG requires an argument." >&2
-      usage
-      ;;
-  esac
-done
 #!/bin/bash
 
 usage() {
@@ -59,7 +40,8 @@ shift $((OPTIND -1))
 
 if [[ -n "$brightness" ]]; then
     # Set brightness with brightnessctl
-    brightnessctl set --quiet "${brightness}%"
+    brightnessctl set  "${brightness}%"
+    echo $brightness
     # Update eww
     eww update var_brightness=$brightness
 else
