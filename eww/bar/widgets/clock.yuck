@@ -1,4 +1,0 @@
-(defwidget clock[]
-  (box
-    (label
-      :text "${clock_h}:${clock_m} ${am_pm}")))

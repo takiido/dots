@@ -1,6 +1,0 @@
-(defwidget kb_brightness[]
-  (btn_icon
-    :onclick "~/.config/scripts/eww/helpers/keyboard.sh -n"
-    :tooltip "${var_kb-brightness}"
-    :icon ""
-    :class "bar__kb-brightness"))

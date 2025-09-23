@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/bash
 
 # -------------------------------------------------------------------
 # Script Name: nvim_updater.sh

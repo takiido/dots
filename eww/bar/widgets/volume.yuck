@@ -1,9 +1,0 @@
-(defwidget volume[]
-  (custom_revealer
-    :btn_icons "${var_volume == 0 ? '' : var_volume < 10 ? '' : var_volume < 30 ? '' : ''}"
-    :onclick "eww update is_volume=${is_volume == false ? true : false}"
-    :is_open is_volume
-    :value var_volume
-    :min 0
-    :max 101
-    :onchange "~/.config/scripts/eww/helpers/volume.sh -u {}"))

@@ -1,9 +1,0 @@
-(defwidget screen_brightness[]
-    (custom_revealer
-      :btn_icons "${var_brightness > 40 ? '' : ''}"
-      :onclick "eww update is_brightness=${is_brightness == false ? true : false}"
-      :is_open is_brightness
-      :value var_brightness
-      :min 0
-      :max 101
-      :onchange "~/.config/scripts/eww/helpers/brightness.sh -u {}"))
