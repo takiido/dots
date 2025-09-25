@@ -8,6 +8,6 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.swapfile = false
 
-vim.o.clipboard = "unnamedplus"
+vim.g.clipboard = "unnamedplus"
 
 vim.g.mapleader = " "

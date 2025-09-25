@@ -1,17 +1,19 @@
 from ignis.widgets import Widget
 
+from .modules.clock import clock
+from .modules.volume import Volume
+
+darkMode = True
+
+def test(args):
+    print("test")
 
 def left() -> Widget.Box:
     return Widget.Box(
             css_classes = ["bar__left"],
             spacing = 10,
             child = [
-                Widget.Label(
-                    label = "left"
-                    ),
-                Widget.Label(
-                    label = "widgets"
-                    )
+                Volume(),
                 ]
             )
 
@@ -21,11 +23,9 @@ def center() -> Widget.Box:
             spacing = 10,
             child = [
                 Widget.Label(
-                    label = "center"
+                    css_classes = ["bar__logo"],
+                    label = "𝖓𝖎𝖍𝖎𝖑"
                     ),
-                Widget.Label(
-                    label = "widgets"
-                    )
                 ]
             )
 
@@ -34,12 +34,7 @@ def right() -> Widget.Box:
             css_classes = ["bar__right"],
             spacing = 10,
             child = [
-                Widget.Label(
-                    label = "right"
-                    ),
-                Widget.Label(
-                    label = "widgets"
-                    )
+                clock,
                 ]
             )
 
@@ -55,7 +50,7 @@ class Bar(Widget.Window):
                 monitor = monitor,
                 anchor = ["left", "top", "right"],
                 child = Widget.CenterBox(
-                    css_classes = ["bar"],
+                    css_classes = ["bar", "bar--dark" if darkMode else ""],
                     start_widget = left(),
                     center_widget = center(),
                     end_widget = right()
