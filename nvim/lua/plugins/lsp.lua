@@ -18,14 +18,16 @@ vim.lsp.config(
     }
 )
 
-vim.lsp.config(
-    "jdlts",
-    {}
-)
+
+vim.lsp.config("java_language_server", {
+    cmd = { "/path/to/lang_server_linux.sh" },
+    root_dir = vim.fs.dirname(vim.fs.find({ 'pom.xml', 'build.gradle', '.git' }, { upward = true })[1]),
+})
+
 
 vim.lsp.enable({
     "lua_ls",
     "pyright",
     "cssls",
-    "jdtls",
+    "java_language_server",
 })
