@@ -1,0 +1,56 @@
+{
+  "plugins": {
+    "barbar.nvim": {
+      "rev": "549ee11",
+      "src": "https://github.com/romgrk/barbar.nvim"
+    },
+    "blink.cmp": {
+      "rev": "cc8c9b7",
+      "src": "https://github.com/Saghen/blink.cmp"
+    },
+    "none-ls.nvim": {
+      "rev": "5cf6384",
+      "src": "https://github.com/nvimtools/none-ls.nvim"
+    },
+    "nvim-jdtls": {
+      "rev": "380ac14",
+      "src": "https://github.com/mfussenegger/nvim-jdtls"
+    },
+    "nvim-lspconfig": {
+      "rev": "e688b48",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-parinfer": {
+      "rev": "3968e66",
+      "src": "https://github.com/gpanders/nvim-parinfer"
+    },
+    "nvim-tree.lua": {
+      "rev": "e397756",
+      "src": "https://github.com/nvim-tree/nvim-tree.lua"
+    },
+    "nvim-treesitter": {
+      "rev": "42fc28ba",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "nvim-web-devicons": {
+      "rev": "b8221e4",
+      "src": "https://github.com/nvim-tree/nvim-web-devicons"
+    },
+    "oldworld.nvim": {
+      "rev": "d0af80c",
+      "src": "https://github.com/dgox16/oldworld.nvim"
+    },
+    "plenary.nvim": {
+      "rev": "b9fd522",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "rustaceanvim": {
+      "rev": "25de223",
+      "src": "https://github.com/mrcjkb/rustaceanvim"
+    },
+    "yuck.vim": {
+      "rev": "9b5e037",
+      "src": "https://github.com/elkowar/yuck.vim"
+    }
+  }
+}
