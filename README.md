@@ -4,12 +4,13 @@
 
 ## I use:
 - **DE**: hyprland
-- **Bar**: waybar
+- **Widgets**: ignis
 - **Notification daemon**: mako
 - **Editor**: neovim-nightly
 - **Bluetooth manager**: bluetui
 - **Message bus**: dbus
 - **Wallpaper util**: hyprpaper
+- **Font**: Custom patched CommitMono
 
 ## How to use
 
