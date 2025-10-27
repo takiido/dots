@@ -2,6 +2,10 @@
 >[!NOTE]
 >Fall 2025 edition
 
+> [!WARNING]
+> THIS IS BRANCH THAT I'M CURRENTLY USING BECAUSE IM TIRED OF ARCH AND STUPID AUR.
+> IF YOU WANT TO USE IT ON YOUR MACHINE YOU NEED TO CREATE SYMLINK FROM ```nixos``` FOLDER TO YOUR ```/etc/nixos/``` FOLDER
+
 ## I use:
 - **DE**: hyprland
 - **Widgets**: ignis
@@ -21,13 +25,13 @@
 ```bash
 git clone git@github.com:takiido/dots
 ```
-or 
+or
 
 ```bash
 git clone https://github.com/takiido/dots
 ```
 
-2. Simply create symlinks replacing dir with desired directory (e.g hypr) 
+2. Simply create symlinks replacing dir with desired directory (e.g hypr)
 ```bash
 ln -s ~/git/dots/<dir> ~/.config/<dir>
 ```
