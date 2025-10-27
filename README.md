@@ -2,6 +2,15 @@
 >[!NOTE]
 >Fall 2025 edition
 
+> [!WARNING]
+> MY CURRENT SETUP IS ON BRANCH *nixos* BECAUSE IM TIRED OF ARCH AND **STUPID AUR**.
+
+> [!CAUTION]
+> I WILL PROBABLY MOVE FROM HYPRLAND BECAUSE ITS GETTING TOO BLOATED
+
+> [!TIP]
+> TRY VOID LINUX 
+
 ## I use:
 - **DE**: hyprland
 - **Widgets**: ignis
