@@ -29,15 +29,15 @@
         "break",
         {
             "type": "custom",
-            "format": "{#dim_black}▗▄▄▖ {#red}▗▄▄▖ {#dim_green}▗▄▄▖ {#dim_yellow}▗▄▄▖ {#dim_blue}▗▄▄▖ {#dim_magenta}▗▄▄▖ {#dim_cyan}▗▄▄▖ {#dim_white}▗▄▄▖{#}"
+            "format": "{#black}▗▄▄▖ {#red}▗▄▄▖ {#dim_green}▗▄▄▖ {#dim_yellow}▗▄▄▖ {#dim_blue}▗▄▄▖ {#dim_magenta}▗▄▄▖ {#dim_cyan}▗▄▄▖ {#dim_white}▗▄▄▖{#}"
         },
         {
             "type": "custom",
-            "format": "{#light_black}███{#dim_black}▌{#} {#light_red}███{#dim_red}▌{#} {#light_green}███{#dim_green}▌{#} {#light_yellow}███{#dim_yellow}▌{#} {#light_blue}███{#dim_blue}▌{#} {#light_magenta}███{#dim_magenta}▌{#} {#light_cyan}███{#dim_cyan}▌{#} {#light_white}███{#dim_white}▌{#}"
+            "format": "{#light_black}███{#black}▌{#} {#light_red}███{#dim_red}▌{#} {#light_green}███{#dim_green}▌{#} {#light_yellow}███{#dim_yellow}▌{#} {#light_blue}███{#dim_blue}▌{#} {#light_magenta}███{#dim_magenta}▌{#} {#light_cyan}███{#dim_cyan}▌{#} {#light_white}███{#dim_white}▌{#}"
         },
         {
             "type": "custom",
-            "format": "{#light_black}███{#dim_black}▘{#} {#light_red}███{#dim_red}▘{#} {#light_green}███{#dim_green}▘{#} {#light_yellow}███{#dim_yellow}▘{#} {#light_blue}███{#dim_blue}▘{#} {#light_magenta}███{#dim_magenta}▘{#} {#light_cyan}███{#dim_cyan}▘{#} {#light_white}███{#dim_white}▘{#}"
+            "format": "{#light_black}███{#black}▘{#} {#light_red}███{#dim_red}▘{#} {#light_green}███{#dim_green}▘{#} {#light_yellow}███{#dim_yellow}▘{#} {#light_blue}███{#dim_blue}▘{#} {#light_magenta}███{#dim_magenta}▘{#} {#light_cyan}███{#dim_cyan}▘{#} {#light_white}███{#dim_white}▘{#}"
         },
 
     ]
