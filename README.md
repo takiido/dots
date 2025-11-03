@@ -3,13 +3,7 @@
 >Fall 2025 edition
 
 > [!WARNING]
-> MY CURRENT SETUP IS ON BRANCH *nixos* BECAUSE IM TIRED OF ARCH AND **STUPID AUR**.
-
-> [!CAUTION]
-> I WILL PROBABLY MOVE FROM HYPRLAND BECAUSE ITS GETTING TOO BLOATED
-
-> [!TIP]
-> TRY VOID LINUX 
+> IM BACK ON *arch and stupid aur* BECAUSE IM TIRED OF NIXOS AND **FLAKES EVERYWHERE**.
 
 ## I use:
 - **DE**: hyprland
@@ -40,3 +34,5 @@ git clone https://github.com/takiido/dots
 ```bash
 ln -s ~/git/dots/<dir> ~/.config/<dir>
 ```
+> [!TIP]
+> TRY VOID LINUX 
