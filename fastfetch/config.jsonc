@@ -1,0 +1,44 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "color": {
+            "1": "yellow"
+        },
+        "source": "/home/takiido/.config/fastfetch/logo_small.txt"
+    },
+    "display": {
+        "separator": "      ",
+        "color": "yellow"
+    },
+    "modules": [
+        "title",
+        "break",
+        {
+            "type": "kernel",
+            "format": "  Arch {release}"
+        },
+        {
+            "type": "uptime",
+            "format": "  {?days} days {?}{/days}{?hours}{hours} hours {?}{/hours}{/}{/}{minutes} minutes"
+        },
+        "packages",
+        {
+            "type": "disk",
+            "format": "{size-used} / {size-total}"
+        },
+        "break",
+        {
+            "type": "custom",
+            "format": "{#dim_black}▗▄▄▖ {#red}▗▄▄▖ {#dim_green}▗▄▄▖ {#dim_yellow}▗▄▄▖ {#dim_blue}▗▄▄▖ {#dim_magenta}▗▄▄▖ {#dim_cyan}▗▄▄▖ {#dim_white}▗▄▄▖{#}"
+        },
+        {
+            "type": "custom",
+            "format": "{#light_black}███{#dim_black}▌{#} {#light_red}███{#dim_red}▌{#} {#light_green}███{#dim_green}▌{#} {#light_yellow}███{#dim_yellow}▌{#} {#light_blue}███{#dim_blue}▌{#} {#light_magenta}███{#dim_magenta}▌{#} {#light_cyan}███{#dim_cyan}▌{#} {#light_white}███{#dim_white}▌{#}"
+        },
+        {
+            "type": "custom",
+            "format": "{#light_black}███{#dim_black}▘{#} {#light_red}███{#dim_red}▘{#} {#light_green}███{#dim_green}▘{#} {#light_yellow}███{#dim_yellow}▘{#} {#light_blue}███{#dim_blue}▘{#} {#light_magenta}███{#dim_magenta}▘{#} {#light_cyan}███{#dim_cyan}▘{#} {#light_white}███{#dim_white}▘{#}"
+        },
+
+    ]
+}
