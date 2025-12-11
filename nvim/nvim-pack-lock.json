@@ -12,6 +12,18 @@
       "rev": "5cf6384",
       "src": "https://github.com/nvimtools/none-ls.nvim"
     },
+    "nui.nvim": {
+      "rev": "de740991c12411b663994b2860f1a4fd0937c130",
+      "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
+    "nvim-dap": {
+      "rev": "5860c7c501eb428d3137ee22c522828d20cca0b3",
+      "src": "https://github.com/mfussenegger/nvim-dap"
+    },
+    "nvim-java": {
+      "rev": "c220ee33f5b022be01b9057a7dcd0bb175abde1d",
+      "src": "https://github.com/nvim-java/nvim-java"
+    },
     "nvim-jdtls": {
       "rev": "380ac14",
       "src": "https://github.com/mfussenegger/nvim-jdtls"
@@ -47,6 +59,11 @@
     "rustaceanvim": {
       "rev": "25de223",
       "src": "https://github.com/mrcjkb/rustaceanvim"
+    },
+    "spring-boot.nvim": {
+      "rev": "218c0c26c14d99feca778e4d13f5ec3e8b1b60f0",
+      "src": "https://github.com/JavaHello/spring-boot.nvim",
+      "version": "'218c0c26c14d99feca778e4d13f5ec3e8b1b60f0'"
     },
     "yuck.vim": {
       "rev": "9b5e037",

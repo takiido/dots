@@ -1,9 +1,7 @@
 # NECRODOTS by takiido
->[!NOTE]
->Fall 2025 edition
 
 > [!WARNING]
-> IM BACK ON *arch and stupid aur* BECAUSE IM TIRED OF NIXOS AND **FLAKES EVERYWHERE**.
+> i switched to fedora + gnome to take a brake. still working on void linux rice.
 
 ## I use:
 - **DE**: hyprland
@@ -34,5 +32,3 @@ git clone https://github.com/takiido/dots
 ```bash
 ln -s ~/git/dots/<dir> ~/.config/<dir>
 ```
-> [!TIP]
-> TRY VOID LINUX 

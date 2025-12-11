@@ -13,5 +13,11 @@ vim.pack.add({
     { src = "https://github.com/gpanders/nvim-parinfer" },
     { src = "https://github.com/nvimtools/none-ls.nvim" },
     { src = "https://github.com/nvim-lua/plenary.nvim" },
-    { src = "https://github.com/mfussenegger/nvim-jdtls" },
+    { 
+        src = 'https://github.com/JavaHello/spring-boot.nvim',
+        version = '218c0c26c14d99feca778e4d13f5ec3e8b1b60f0',
+    },
+    { src = 'https://github.com/MunifTanjim/nui.nvim' },
+    { src = 'https://github.com/mfussenegger/nvim-dap' },
+    { src = 'https://github.com/nvim-java/nvim-java' },
 })

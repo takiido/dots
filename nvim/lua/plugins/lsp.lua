@@ -30,4 +30,5 @@ vim.lsp.enable({
     "pyright",
     "cssls",
     "java_language_server",
+    "jdtls",
 })

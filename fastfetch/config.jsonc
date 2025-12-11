@@ -4,7 +4,7 @@
         "color": {
             "1": "yellow"
         },
-        "source": "/home/takiido/.config/fastfetch/logo_small.txt"
+        "source": "fedora_small"
     },
     "display": {
         "separator": "      ",
@@ -39,6 +39,5 @@
             "type": "custom",
             "format": "{#light_black}███{#black}▘{#} {#light_red}███{#dim_red}▘{#} {#light_green}███{#dim_green}▘{#} {#light_yellow}███{#dim_yellow}▘{#} {#light_blue}███{#dim_blue}▘{#} {#light_magenta}███{#dim_magenta}▘{#} {#light_cyan}███{#dim_cyan}▘{#} {#light_white}███{#dim_white}▘{#}"
         },
-
     ]
 }
