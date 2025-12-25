@@ -35,6 +35,6 @@ class Bar(widgets.Window):
             namespace=f"bar-{monitor}",
             monitor=monitor,
             exclusivity="exclusive",
-            anchor=["left", "bottom", "right"],
+            anchor=["left", "top", "right"],
             child=barContainer,
         )

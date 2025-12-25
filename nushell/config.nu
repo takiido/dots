@@ -1,2 +1,2 @@
 $env.config.show_banner = false
-try { fastfetch } catch { print "fastfetch not found" }
+try { fastfetch -c ~/.config/fastfetch/config-min.jsonc } catch { print "fastfetch not found" }
