@@ -18,6 +18,9 @@
             "format": "  Arch {release}"
         },
         {
+            "type": "battery"
+        },
+        {
             "type": "uptime",
             "format": "  {?days} days {?}{/days}{?hours}{hours} hours {?}{/hours}{/}{/}{minutes} minutes"
         },

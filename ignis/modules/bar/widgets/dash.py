@@ -1,19 +1,14 @@
+"""Dashboard widget grouping backlight and volume controls."""
+
 from ignis import widgets
-from .customIconBtn import CustomIconBtn
-from .volume import Volume
+
 from .backlight import Backlight
+from .volume import Volume
 
 
 class Dash(widgets.Box):
-    def __init__(self, control_centre):
-        self.network_btn = CustomIconBtn(
-            icon="", on_click=lambda _: control_centre.toggle()
-        )
+    """Container for system control widgets (backlight, volume)."""
 
-        super().__init__(
-            child=[
-                self.network_btn,
-                Backlight(),
-                Volume(),
-            ],
-        )
+    def __init__(self) -> None:
+        """Initialize the dashboard widget."""
+        super().__init__(child=[Backlight(), Volume()])

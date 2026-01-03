@@ -1,0 +1,220 @@
+// =============================================================================
+// Variables
+// =============================================================================
+
+$bg-primary: rgba(0, 0, 0, 0.95);
+$bg-secondary: #161617;
+$accent: #92B3D5;
+$text-primary: #C8C7CD;
+$text-muted: #696874;
+$danger: #B33F42;
+
+$transition-fast: 0.2s ease;
+$border-radius: 0;
+
+// =============================================================================
+// Mixins
+// =============================================================================
+
+@mixin interactive-btn {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: $border-radius;
+    padding: 5px;
+    transition: background-color $transition-fast;
+
+    &:hover {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &:active {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+// =============================================================================
+// Bar
+// =============================================================================
+
+.bar {
+    background-color: $bg-primary;
+
+    &__icon-btn {
+        font-size: 1.1rem;
+        @include interactive-btn;
+    }
+
+    &__clock {
+        padding: 0 12px 0 4px;
+        font-size: 1rem;
+    }
+}
+
+// =============================================================================
+// Tray
+// =============================================================================
+
+.tray {
+    &__icon {
+        @include interactive-btn;
+        padding: 2px 4px;
+    }
+}
+
+// =============================================================================
+// Notification (bar trigger)
+// =============================================================================
+
+.notification {
+    &__trigger {
+        font-size: 1.2rem;
+        @include interactive-btn;
+    }
+}
+
+// =============================================================================
+// Notification Panel (history window)
+// =============================================================================
+
+.notification-panel {
+    padding: 20px 4px 8px 16px;
+    margin-top: 8px;
+    background: rgba(0, 0, 0, 0.9);
+
+    &__header {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    &__title {
+        font-size: 1.2rem;
+    }
+
+    &__list {
+        padding-right: 20px;
+    }
+
+    &__empty {
+        color: $text-muted;
+        padding: 20px;
+    }
+}
+
+// =============================================================================
+// Notification Item
+// =============================================================================
+
+.notification-item {
+    margin-right: 20px;
+    border: 2px solid $bg-secondary;
+
+    &:hover {
+        border-color: $accent;
+
+        .notification-item__header {
+            background-color: $accent;
+            color: $bg-secondary;
+        }
+    }
+
+    &__header {
+        padding: 8px 8px 0 8px;
+        background-color: $bg-secondary;
+        color: $accent;
+    }
+
+    &__app {
+        font-weight: bold;
+    }
+
+    &__time {
+        color: $text-muted;
+        font-size: 0.8rem;
+    }
+
+    &__title {
+        color: $text-primary;
+        font-size: 0.9rem;
+    }
+
+    &__body {
+        color: $text-muted;
+        font-size: 0.8rem;
+    }
+
+    &__content {
+        padding: 16px 8px 8px 8px;
+    }
+
+    &__wrapper {
+        padding: 8px;
+    }
+
+    &__close {
+        color: $text-muted;
+        font-size: 1.5rem;
+        @include interactive-btn;
+
+        &:hover {
+            border-color: transparent;
+            color: $danger;
+        }
+    }
+}
+
+// =============================================================================
+// Notification Popup (toast)
+// =============================================================================
+
+.notification-popup {
+    &__container {
+        // Container for stacked popups
+    }
+
+    &__content {
+        margin: 12px;
+        min-width: 300px;
+        background: rgba(0, 0, 0, 1);
+        border: 2px solid $accent;
+    }
+
+    &__header {
+        padding: 8px 8px 0 8px;
+        background-color: $accent;
+        color: $bg-secondary;
+    }
+
+    &__app {
+        font-weight: bold;
+    }
+
+    &__time {
+        margin-left: auto;
+        font-size: 0.8rem;
+    }
+
+    &__title {
+        color: $text-primary;
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    &__body {
+        color: $text-muted;
+        font-size: 0.8rem;
+        padding: 0 8px 8px 8px;
+    }
+
+    &__dismiss {
+        @include interactive-btn;
+        color: $text-muted;
+
+        &:hover {
+            color: $danger;
+        }
+    }
+}

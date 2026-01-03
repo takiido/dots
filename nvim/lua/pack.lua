@@ -20,4 +20,6 @@ vim.pack.add({
     { src = 'https://github.com/MunifTanjim/nui.nvim' },
     { src = 'https://github.com/mfussenegger/nvim-dap' },
     { src = 'https://github.com/nvim-java/nvim-java' },
+
+    { src = 'https://github.com/yetone/avante.nvim' },
 })

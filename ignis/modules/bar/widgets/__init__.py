@@ -1,16 +1,25 @@
-from .clock import Clock
-from .mode import Mode
-from .tray import Tray
-from .customIconBtn import CustomIconBtn
-from .volume import Volume
-from .backlight import Backlight
+"""Bar widgets."""
 
+from .backlight import Backlight
+from .bluetooth import Bluetooth
+from .clock import Clock
+from .dash import Dash
+from .mode import Mode
+from .network import Network
+from .notifications import NotificationCenter
+from .tray import Tray
+from .volume import Volume
+from .window_name import WindowName
 
 __all__ = [
-    "Clock",
-    "Mode",
-    "Tray",
-    "CustomIconBtn",
-    "Volume",
     "Backlight",
+    "Bluetooth",
+    "Clock",
+    "Dash",
+    "Mode",
+    "Network",
+    "NotificationCenter",
+    "Tray",
+    "Volume",
+    "WindowName",
 ]

@@ -1,9 +1,18 @@
+from modules import Bar
+from ignis.css_manager import CssManager, CssInfoString, CssInfoPath
 from ignis import utils
-from modules import Bar, ControlCentre
+import os
 
+css_manager = CssManager.get_default()
 
-control_centres = {}
+# From file
+css_manager.apply_css(
+    CssInfoPath(
+        name="main",
+        path=os.path.join(os.path.dirname(__file__), "style.scss"),
+        compiler_function=lambda path: utils.sass_compile(path=path),
+    )
+)
 
 for m in range(utils.get_n_monitors()):
-    control_centres[m] = ControlCentre(m)
-    Bar(m, control_centres[m])
+    Bar(m)

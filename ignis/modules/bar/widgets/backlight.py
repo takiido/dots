@@ -1,84 +1,93 @@
-import os
-import sys
+"""Backlight control widget."""
+
 from enum import Enum
+from typing import Any
+
 from ignis import widgets
 from ignis.services.backlight import BacklightService
-from .customIconBtn import CustomIconBtn
-from ...common.customSlider import CustomSlider
+
+from ...common import IconButton, Slider
 
 
-class BacklightState(Enum):
-    NONE = ""
+class BacklightIcon(Enum):
+    """Backlight icon states."""
+
+    NONE = ""
     LOW = ""
     NORMAL = ""
 
 
 class Backlight(widgets.Box):
-    BACKLIGHT_LOW_THRESHOLD = 40
+    """Backlight control with slider reveal.
 
-    def __init__(self):
-        self.is_backlight_visible = False
+    Click to show/hide brightness slider.
+    """
 
-        self.backlight_serv = BacklightService.get_default()
-        self.max_brightness = self.backlight_serv.max_brightness
+    THRESHOLD_LOW = 40
 
-        self.backlight_serv.connect("notify::brightness", self.on_backlight_change)
+    def __init__(self) -> None:
+        """Initialize the backlight widget."""
+        self._visible = False
 
-        self.slider_toggle_btn = CustomIconBtn(
-            on_click=lambda _: self.open_backlight_slider()
+        self._service = BacklightService.get_default()
+        self._max_brightness = self._service.max_brightness
+
+        self._service.connect("notify::brightness", self._on_change)
+
+        self._toggle_btn = IconButton(on_click=lambda _: self._toggle())
+
+        self._settings_btn = IconButton(
+            icon="",
+            on_click=lambda _: None,
         )
 
-        self.backlight_control_btn = CustomIconBtn(
-            icon="", on_click=lambda _: print("OPEN DASH BACKLIGHT CONTROL PANEL")
-        )
-
-        self.backlight_slider = CustomSlider(
+        self._slider = Slider(
             step=1,
-            init_val=self.__convert_brightness(),
-            draw_value=True,
-            on_change=lambda val: self.set_brightness(
-                round(self.max_brightness / 100 * val)
-            ),
+            initial=self._get_percent(),
+            show_value=True,
+            on_change=lambda val: self._set_brightness(val),
         )
 
-        self.backlight_revealer = widgets.Revealer(
-            child=widgets.Box(
-                child=[self.backlight_slider, self.backlight_control_btn]
-            ),
+        self._revealer = widgets.Revealer(
+            child=widgets.Box(child=[self._slider, self._settings_btn]),
             transition_type="slide_left",
             transition_duration=280,
-            reveal_child=self.is_backlight_visible,
+            reveal_child=False,
         )
 
-        super().__init__(child=[self.backlight_revealer, self.slider_toggle_btn])
+        super().__init__(child=[self._revealer, self._toggle_btn])
 
-    def open_backlight_slider(self):
-        if self.backlight_serv.available is not None:
-            self.is_backlight_visible = not self.is_backlight_visible
-            self.backlight_revealer.set_reveal_child(self.is_backlight_visible)
+    def _toggle(self) -> None:
+        """Toggle slider visibility."""
+        if not self._service.available:
+            return
 
-            if self.is_backlight_visible:
-                self.slider_toggle_btn.update_icon("")
-            else:
-                self.on_backlight_change()
+        self._visible = not self._visible
+        self._revealer.set_reveal_child(self._visible)
 
-    def on_backlight_change(self, service=None, _=None):
-        if self.backlight_serv.available:
-            brightness = self.__convert_brightness()
-            if brightness < self.BACKLIGHT_LOW_THRESHOLD:
-                self.update_backlight_icon(BacklightState.LOW)
-            else:
-                self.update_backlight_icon(BacklightState.NORMAL)
+        if self._visible:
+            self._toggle_btn.update_icon("")
         else:
-            self.update_backlight_icon(BacklightState.NONE)
+            self._on_change()
 
-    def update_backlight_icon(self, state: BacklightState):
-        if not self.is_backlight_visible:
-            self.slider_toggle_btn.update_icon(state.value)
+    def _on_change(self, *args: Any) -> None:
+        """Handle brightness changes."""
+        if not self._service.available:
+            icon = BacklightIcon.NONE
+        elif self._get_percent() < self.THRESHOLD_LOW:
+            icon = BacklightIcon.LOW
+        else:
+            icon = BacklightIcon.NORMAL
 
-    def set_brightness(self, value):
-        if self.backlight_serv.available:
-            self.backlight_serv.brightness = value
+        if not self._visible:
+            self._toggle_btn.update_icon(icon.value)
 
-    def __convert_brightness(self) -> int:
-        return self.backlight_serv.brightness / self.max_brightness * 100
+    def _set_brightness(self, percent: float) -> None:
+        """Set brightness from percentage."""
+        if self._service.available:
+            value = round(self._max_brightness / 100 * percent)
+            self._service.brightness = value
+
+    def _get_percent(self) -> int:
+        """Get current brightness as percentage."""
+        return int(self._service.brightness / self._max_brightness * 100)

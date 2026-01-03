@@ -1,10 +1,14 @@
-from enum import Enum
+"""Mode indicator widget."""
+
 from ignis import widgets
 
 
 class Mode(widgets.Box):
-    def __init__(self):
-        modes = ["Normal", "Tablet", "Docked"]
-        mode_label = widgets.Label(label=modes[0])
+    """Displays the current device mode (Normal/Tablet/Docked)."""
 
-        super().__init__(child=[mode_label])
+    MODES = ["Normal", "Tablet", "Docked"]
+
+    def __init__(self) -> None:
+        """Initialize the mode widget."""
+        label = widgets.Label(label=self.MODES[0])
+        super().__init__(child=[label])

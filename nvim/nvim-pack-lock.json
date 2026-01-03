@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "avante.nvim": {
+      "rev": "a9e9890fc620c46e39bc22c0ccea5d57beefc0e7",
+      "src": "https://github.com/yetone/avante.nvim"
+    },
     "barbar.nvim": {
       "rev": "549ee11",
       "src": "https://github.com/romgrk/barbar.nvim"
