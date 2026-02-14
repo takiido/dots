@@ -71,6 +71,12 @@ class Volume(widgets.Box):
             return
 
         self._visible = not self._visible
+
+        if self._visible:
+            self.css_classes = ["toggler-open"]
+        else:
+            self.css_classes = ["toggler"]
+
         self._revealer.set_reveal_child(self._visible)
 
         if self._visible:

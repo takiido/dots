@@ -1,4 +1,4 @@
-"""Notification center bar widget."""
+"RegExRegEx""Notification center bar widget."""
 
 from typing import Any
 

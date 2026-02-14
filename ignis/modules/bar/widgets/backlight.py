@@ -55,7 +55,7 @@ class Backlight(widgets.Box):
             reveal_child=False,
         )
 
-        super().__init__(child=[self._revealer, self._toggle_btn])
+        super().__init__(child=[self._revealer, self._toggle_btn], css_classes=["toggler"])
 
     def _toggle(self) -> None:
         """Toggle slider visibility."""
@@ -63,6 +63,13 @@ class Backlight(widgets.Box):
             return
 
         self._visible = not self._visible
+
+        if self._visible:
+            self.css_classes = ["toggler-open"]
+        else:
+            self.css_classes = ["toggler"]
+
+
         self._revealer.set_reveal_child(self._visible)
 
         if self._visible:

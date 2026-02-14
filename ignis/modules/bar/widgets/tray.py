@@ -93,7 +93,13 @@ class Tray(widgets.Box):
 
     def _create_icon(self, item: SystemTrayItem) -> widgets.Button:
         """Create a tray icon button."""
-        icon = widgets.Icon(image=item.icon)
+        if item.title == "spotify":
+            icon = widgets.Label(
+                    style="font-size: 20px; font-family: 'Phosphor';",
+                    label=""
+                    )
+        else:
+            icon = widgets.Icon(image=item.icon)
         btn = widgets.Button(
             child=icon,
             css_classes=["tray__icon"],

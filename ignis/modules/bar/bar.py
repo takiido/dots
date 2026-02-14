@@ -11,6 +11,7 @@ from .widgets import (
     NotificationCenter,
     Tray,
     WindowName,
+    Workspaces,
 )
 
 
@@ -29,7 +30,10 @@ class Bar(widgets.Window):
             monitor: Monitor index to display on.
         """
         left = widgets.Box(child=[Mode(), WindowName()])
-        center = widgets.Box(child=[NotificationCenter()])
+        center = widgets.Box(child=[
+            Workspaces([1,2,3]),
+            NotificationCenter(),
+            Workspaces([4,5,6])])
         right = widgets.Box(
             child=[
                 Tray(),

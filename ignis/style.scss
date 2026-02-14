@@ -12,19 +12,28 @@ $danger: #B33F42;
 $transition-fast: 0.2s ease;
 $border-radius: 0;
 
+scale {
+  opacity: 0;
+}
+
+.toggler-open { 
+    background: $bg-secondary;
+}
 // =============================================================================
 // Mixins
 // =============================================================================
 
 @mixin interactive-btn {
+    color: $text-primary;
     background-color: transparent;
+    background: transparent;
     border: 1px solid transparent;
     border-radius: $border-radius;
     padding: 5px;
     transition: background-color $transition-fast;
 
     &:hover {
-        border-color: rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.1);
     }
 
     &:active {
@@ -42,6 +51,7 @@ $border-radius: 0;
 
 .bar {
     background-color: $bg-primary;
+    font-family: "DepartureMono Nerd Font";
 
     &__icon-btn {
         font-size: 1.1rem;
@@ -218,3 +228,17 @@ $border-radius: 0;
         }
     }
 }
+
+// =============================================================================
+// Workspaces
+// =============================================================================
+
+.workspace_btn {
+    color: $text-primary;
+    background: transparent;
+    border: none;
+
+    &--active {
+      background: green;
+    }
+  }

@@ -10,6 +10,7 @@ from .notifications import NotificationCenter
 from .tray import Tray
 from .volume import Volume
 from .window_name import WindowName
+from .workspaces import Workspaces
 
 __all__ = [
     "Backlight",
@@ -22,4 +23,5 @@ __all__ = [
     "Tray",
     "Volume",
     "WindowName",
+    "Workspaces",
 ]

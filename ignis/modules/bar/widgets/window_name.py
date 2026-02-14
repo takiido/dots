@@ -56,6 +56,8 @@ class WindowName(widgets.Box):
         """Update the displayed window title."""
         if self._current_window:
             title = self._current_window.title
+            if len(title) > 24:
+                title = title[0:24] + "..."
             if not title:
                 title = self._current_window.class_name or "..."
             self._label.set_label(title)
