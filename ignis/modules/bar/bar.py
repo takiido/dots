@@ -29,12 +29,20 @@ class Bar(widgets.Window):
         Args:
             monitor: Monitor index to display on.
         """
-        left = widgets.Box(child=[Mode(), WindowName()])
-        center = widgets.Box(child=[
-            Workspaces([1,2,3]),
-            NotificationCenter(),
-            Workspaces([4,5,6])])
+        self._monitor = monitor
+        left = widgets.Box(
+                child=[
+                    Workspaces(monitor),
+                    WindowName(),
+                    ]
+                )
+        center = widgets.Box(
+                child=[
+                    NotificationCenter(),
+                    ]
+                )
         right = widgets.Box(
+            spacing = 4,
             child=[
                 Tray(),
                 Bluetooth(),

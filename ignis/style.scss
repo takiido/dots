@@ -2,7 +2,7 @@
 // Variables
 // =============================================================================
 
-$bg-primary: rgba(0, 0, 0, 0.95);
+$bg-primary: #000000;
 $bg-secondary: #161617;
 $accent: #92B3D5;
 $text-primary: #C8C7CD;
@@ -24,16 +24,15 @@ scale {
 // =============================================================================
 
 @mixin interactive-btn {
+    padding: 5px 10px;
     color: $text-primary;
-    background-color: transparent;
-    background: transparent;
+    background: $bg-primary;
     border: 1px solid transparent;
     border-radius: $border-radius;
-    padding: 5px;
     transition: background-color $transition-fast;
 
     &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: #303032;
     }
 
     &:active {
@@ -50,8 +49,9 @@ scale {
 // =============================================================================
 
 .bar {
-    background-color: $bg-primary;
+    margin: 3px 4px 0;
     font-family: "DepartureMono Nerd Font";
+    background-color: transparent;
 
     &__icon-btn {
         font-size: 1.1rem;
@@ -59,8 +59,10 @@ scale {
     }
 
     &__clock {
-        padding: 0 12px 0 4px;
+        padding: 0 6px;
+        color: $text-primary;
         font-size: 1rem;
+        background-color: $bg-primary;
     }
 }
 
@@ -81,6 +83,7 @@ scale {
 
 .notification {
     &__trigger {
+        margin-left: 3px;
         font-size: 1.2rem;
         @include interactive-btn;
     }
@@ -233,12 +236,19 @@ scale {
 // Workspaces
 // =============================================================================
 
+.workspaces {
+}
+
 .workspace_btn {
-    color: $text-primary;
-    background: transparent;
+    color: $text-muted;
+    background: $bg-primary;
     border: none;
+    border-radius: 0;
 
     &--active {
-      background: green;
+      color: $text-primary;
+      font-weight: 900;
+      .workspace_btn_label {
+      }
     }
   }

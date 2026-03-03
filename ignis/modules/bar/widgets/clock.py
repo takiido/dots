@@ -27,7 +27,7 @@ class Clock(widgets.Box):
     def _update(self) -> None:
         """Update time display and calendar tooltip."""
         now = datetime.datetime.now()
-        self._label.set_label(now.strftime("%H:%M %p"))
+        self._label.set_label(now.strftime("%I:%M %p"))
         self.set_tooltip_text(self._get_calendar())
 
     def _get_calendar(self) -> str:

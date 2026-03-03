@@ -3,6 +3,7 @@
 from enum import Enum
 from typing import Any, Optional
 
+from ignis import utils
 from ignis import widgets
 from ignis.services.hyprland import HyprlandService
 
@@ -23,34 +24,34 @@ class Workspaces(widgets.Box):
     Subscribes to Hyprland to track window focus changes.
     """
 
-    def __init__(self, workspaces: Any) -> None:
+    def __init__(self, monitor_id: int) -> None:
         """Initialize the window name widget."""
         self._hyprland = HyprlandService.get_default()
-        self._active_workspace = None
-        self._hyprland.connect("notify::active-workspace", self._on_active_change)
 
+        self._monitor = utils.get_monitor(monitor_id).get_connector()
 
-        super().__init__(child=[])
+        self._hyprland.connect("notify::workspaces", lambda *_: self._on_workspaces_change())
+        self._hyprland.connect("notify::active-workspace", lambda *_: self._on_active_change())
 
-        self._populate(workspaces)
+        self._workspaces = None
+
+        super().__init__(child=[], css_classes=["workspaces"])
+
+    def _on_workspaces_change(self, *_) -> None:
+        self.child = []
+        for i in self._hyprland.workspaces:
+            if (i.monitor == self._monitor):
+                btn = WorkspaceBtn(
+                        label = WorkspaceLetter(i.id).name,
+                        workspace = i
+                        )
+                self.child = self.child + [btn]
+
+    def _on_active_change(self, *_) -> None:
+        active_id = self._hyprland.active_workspace.id
+        for btn in self.child:
+           is_active = (btn.workspace.id == active_id)
+           btn.update_active(is_active)
     
-    def _populate(self, w) -> None:
-        """Add buttons based on workspaces"""
-        for i in w:
-            btn = WorkspaceBtn(
-                    id = i,
-                    label = WorkspaceLetter(i).name,
-                    service=self._hyprland
-                    )
-            self.child = self.child + [btn]
-
-    def _on_active_change(self, *args: Any) -> None:
-        """Handle active workspace change"""
-        for i in self.child:
-            if i.id == self._hyprland.active_workspace:
-                self._active_workspace = i
-        
-        for i in self.child:
-            if i.id == self._active_workspace.id:
-                i.toggle_active();
-
+    def _remove_workspace(self, w) -> None:
+        self.child = [btn for btn in self.child if btn.workspace != w]
