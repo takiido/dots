@@ -41,6 +41,18 @@ vim.lsp.config("cssls", {
 -- Rust
 vim.lsp.config("rust_analyzer", {
   capabilities = capabilities,
+
+  settings = {
+    ["rust-analyzer"] = {
+      checkOnSave = true,
+      cargo = {
+        allFeatures = true,
+      },
+      rustfmt = {
+        extraArgs = {},
+      },
+    },
+  },
 })
 
 -- SQL

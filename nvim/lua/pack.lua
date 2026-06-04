@@ -1,6 +1,6 @@
 vim.pack.add({
   -- Theme
-  { src = "https://github.com/dgox16/oldworld.nvim" },
+  { src = "https://github.com/bluz71/vim-moonfly-colors", name = "moonfly" },
 
   -- Syntax highlighting
   { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
