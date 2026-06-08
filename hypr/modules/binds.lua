@@ -11,6 +11,7 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag())
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize())
 
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(apps.terminal))
+hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(apps.launcher))
 
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + F", hl.dsp.window.float({toggle}))

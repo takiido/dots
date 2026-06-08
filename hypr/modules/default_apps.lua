@@ -1,5 +1,6 @@
 local default_apps = {
-    terminal = "kitty"
+    terminal = "foot",
+    launcher = "walker"
 }
 
 return default_apps
