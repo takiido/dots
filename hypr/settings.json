@@ -1,0 +1,29 @@
+{
+  "border_size": 3,
+  "gaps_in": 4,
+  "gaps_out": 10,
+  
+  "colors": {
+    "active_border": "#969388",
+    "inactive_border": "#545454"
+  },
+
+  "default_apps": {
+    "terminal": "foot",
+    "launcher": "vicinae toggle"
+  },
+
+  "autostart": [
+    "hyprpm reload -n",
+    "hyprpaper",
+    "vicinae server",
+    "quickshell",
+    "iio-hyprland eDP-1",
+    "openmeters"
+  ],
+
+  "decoration": {
+    "rounding": 6,
+    "rounding_power": 3
+  }
+}
