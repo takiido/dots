@@ -1,27 +1,49 @@
 local json = require("external/dkjson")
 
-local file = io.open(".config/hypr/consts/settings.json", "r")
+local function merge(defaults, data)
+  if type(data) ~= "table" then return defaults end
+  for k, v in pairs(data) do
+    if k == "autostart" then
+      defaults[k] = v
+    elseif type(v) == "table" and type(defaults[k]) == "table" then
+      merge(defaults[k], v)
+    else
+      defaults[k] = v
+    end
+  end
+  return defaults
+end
 
 local settings = {
   border_size = 0,
-  gaps_in = 4,
-  gaps_out = 16,
-
+  gaps_in = 0,
+  gaps_out = 0,
   colors = {
     active_border = "",
     inactive_border = "",
-  }
+  },
+  default_apps = {
+    terminal = "",
+    launcher = ""
+  },
+  autostart = {},
+  decoration = {
+    rounding = 0,
+    rounding_power = 0
+  },
 }
 
+local file = io.open(os.getenv("HOME") .. "/.config/hypr/settings.json", "r")
 if file then
   local content = file:read("*a")
-  local table = json.decode(content)
+  file:close()
 
-  settings.border_size = table.border_size
-  settings.gaps_in = table.gaps_in
-  settings.gaps_out = table.gaps_out
-  settings.colors.active_border = table.colors.active_border
-  settings.colors.inactive_border = table.colors.inactive_border
+  local data, _, err = json.decode(content)
+  if data then
+    merge(settings, data)
+  else
+    io.stderr:write("settings.json parse error: " .. tostring(err) .. "\n")
+  end
 end
 
 return settings

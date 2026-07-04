@@ -9,5 +9,10 @@ hl.config({
       active_border = s.colors.active_border,
       inactive_border = s.colors.inactive_border,
     }
+  },
+
+  decoration = {
+    rounding = s.decoration.rounding,
+    rounding_power = s.decoration.rounding_power
   }
 })

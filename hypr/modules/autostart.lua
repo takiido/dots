@@ -1,3 +1,7 @@
+local s = require("utils.settings")
+
 hl.on("hyprland.start", function ()
-  hl.exec_cmd("elephant")
+  for _, cmd in ipairs(s.autostart) do
+    hl.exec_cmd(cmd)
+  end
 end)

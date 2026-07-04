@@ -1,18 +1,10 @@
+//@ pragma ShellId nihil
 import Quickshell
-import QtQuick
+import qs.modules.bar
 
-PanelWindow {
-  anchors {
-    top: true
-    left: true
-    right: true
-  }
-
-  implicitHeight: 30
-
-  Text {
-    anchors.centerIn: parent
-
-    text: "nihil"
+ShellRoot {
+  Variants {
+    model: Quickshell.screens
+    Bar { screen: modelData }
   }
 }
