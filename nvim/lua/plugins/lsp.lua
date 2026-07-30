@@ -8,6 +8,11 @@ vim.filetype.add({
   }
 })
 
+-- Bash
+vim.lsp.config("bashls", {
+  capabilities = capabilities,
+})
+
 -- Lua
 vim.lsp.config("lua_ls", {
   capabilities = capabilities,
@@ -60,14 +65,16 @@ vim.lsp.config("sqlls", {
   capabilities = capabilities,
 })
 
--- Java
-vim.lsp.config("jdtls", {
+-- C / C++
+vim.lsp.config("clangd", {
   capabilities = capabilities,
-  root_dir = function()
-    return vim.fs.dirname(
-      vim.fs.find({ "pom.xml", "build.gradle", ".git" }, { upward = true })[1]
-    )
-  end,
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--clang-tidy",
+    "--header-insertion=iwyu",
+    "--completion-style=detailed",
+  },
 })
 
 vim.lsp.enable({
@@ -80,4 +87,5 @@ vim.lsp.enable({
   "rust_analyzer",
   "sqlls",
   "jdtls",
+  "clangd",
 })

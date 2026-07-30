@@ -13,5 +13,11 @@ null_ls.setup({
 
     -- Lua
     null_ls.builtins.formatting.stylua,
+
+    -- C / C++
+    null_ls.builtins.formatting.clang_format,
+
+    -- Bash
+    null_ls.builtins.formatting.shfmt,
   },
 })
