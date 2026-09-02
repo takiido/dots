@@ -1,9 +1,9 @@
 #!/bin/bash
 # usage: theme-switch dark|light|toggle
 
-STATE_FILE="$XDG_STATE_HOME/theme-mode"
-STATE_FILE="${STATE_FILE:-$HOME/.local/state/theme-mode}"
-mkdir -p "$(dirname "$STATE_FILE")"
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}"
+STATE_FILE="$STATE_DIR/theme-mode"
+mkdir -p "$STATE_DIR"
 
 mode="$1"
 if [ "$mode" = "toggle" ]; then
@@ -28,8 +28,9 @@ fi
 
 # foot terminal — swap colors config and reload via SIGUSR1 (foot supports live reload)
 if [ "$mode" = "dark" ]; then
+  pkill -USR1 -x foot
 	cp "$HOME/.config/foot/theme-dark.ini" "$HOME/.config/foot/theme.ini"
 else
+  pkill -USR2 -x foot
 	cp "$HOME/.config/foot/theme-light.ini" "$HOME/.config/foot/theme.ini"
 fi
-pkill -SIGUSR1 foot 2>/dev/null

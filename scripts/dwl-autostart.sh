@@ -2,6 +2,18 @@
 
 WP=leaves.jpg
 
+apply_theme() {
+	mode="$1"
+	"$HOME/.local/bin/theme-switch" "$mode"
+	(
+		for i in $(seq 1 50); do
+			[ -p "$XDG_RUNTIME_DIR/somebar-0" ] && break
+			sleep 0.1
+		done
+		somebar -c "theme $mode"
+	) &
+}
+
 pipewire &
 pipewire-pulse &
 wireplumber &
@@ -12,6 +24,13 @@ wbg -s /home/takiido/wp/$WP &
 
 if $WLR_DIR | grep -q "ED270R"; then
 	$WLR_DIR --output HDMI-A-1 --mode 1920x1080@143.992996
+fi
+
+hour=$(date +%H)
+if [ "$((10#$hour))" -ge 6 ] && [ "$((10#$hour))" -lt 18 ]; then
+	apply_theme light
+else
+	apply_theme dark
 fi
 
 pkill -x someblocks
