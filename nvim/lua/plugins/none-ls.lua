@@ -8,13 +8,16 @@ null_ls.setup({
     -- JS / TS / JSON / CSS / HTML / SCSS
     null_ls.builtins.formatting.prettier,
 
-    -- Rust
-    null_ls.builtins.formatting.rustfmt,
-
-    -- Java
-    null_ls.builtins.formatting.google_java_format,
-
     -- SQL
     null_ls.builtins.formatting.sqlfluff,
+
+    -- Lua
+    null_ls.builtins.formatting.stylua,
+
+    -- C / C++
+    null_ls.builtins.formatting.clang_format,
+
+    -- Bash
+    null_ls.builtins.formatting.shfmt,
   },
 })

@@ -1,4 +1,1 @@
-require("oldworld.config").setup({
-  variant = "oled",
-  vim.cmd("colorscheme oldworld")
-})
+vim.cmd("colorscheme moonfly")

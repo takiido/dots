@@ -24,5 +24,11 @@ require("mason-lspconfig").setup({
 
     -- Lua
     "lua_ls",
+
+    -- C / C++
+    "clangd",
+
+    -- Bash
+    "bashls",
   }
 })
